@@ -1,5 +1,20 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import { DEFAULT_LANGUAGE, translations } from './src/i18n/translations';
+
+import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  i18n: {
+    defaultLocale: DEFAULT_LANGUAGE,
+    locales: Object.keys(translations),
+    routing: {
+      prefixDefaultLocale: false
+    }
+  },
+
+  vite: {
+    plugins: [tailwindcss()]
+  }
+});

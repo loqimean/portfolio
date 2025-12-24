@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+@import "tailwindcss";
+@plugin "daisyui";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: 'Lato', 'sans-serif';
+}
+
+@layer base {
+  :root {
+    --bg-color: #C30707;
+    --text-color: #1a1a1a;
+    --accent-color: #4a90e2;
+    --card-bg: #f5f5f5;
+    --border-color: #e0e0e0;
+  }
+
+  [data-theme="dark"] {
+    --bg-color: #161616;
+    --text-color: #ffffff;
+    --accent-color: #C30707;
+    --card-bg: #2a2a2a;
+    --border-color: #404040;
+  }
+
+  html {
+    @apply bg-[var(--bg-color)] text-[var(--text-color)] transition-colors duration-300;
+  }
+
+  body {
+    @apply min-h-screen;
+  }
+
+  a {
+    @apply text-[var(--accent-color)] no-underline hover:underline;
+  }
+}
+
+@layer components {
+  body {
+    max-width: 100% !important;
+  }
+}

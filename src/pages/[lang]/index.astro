@@ -1,0 +1,21 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import MainPageContent from '../../components/MainPageContent.astro';
+import { DEFAULT_LANGUAGE, getTranslations, type Language } from '../../i18n/translations';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'uk' } },
+    { params: { lang: 'pl' } },
+    { params: { lang: 'es' } },
+  ];
+}
+
+const { lang } = Astro.params;
+const t = getTranslations(lang as Language);
+---
+
+<Layout title={`${t.name} - Portfolio`} lang={lang || DEFAULT_LANGUAGE} metaDescription={t.index.metaDescription}>
+  <MainPageContent t={t} />
+</Layout>

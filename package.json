@@ -6,9 +6,14 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "preinstall": "npx only-allow pnpm",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.15.3"
+    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/vite": "^4.1.16",
+    "astro": "^5.15.3",
+    "daisyui": "^5.5.5",
+    "tailwindcss": "^4.1.16"
   }
 }

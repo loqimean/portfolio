@@ -1,43 +1,100 @@
-# Astro Starter Kit: Minimal
+# Portfolio - Astro
 
-```sh
-npm create astro@latest -- --template minimal
+A modern, multilingual portfolio website built with Astro featuring theme switching and language support.
+
+## Features
+
+- 🌐 **Multi-language Support**: English, Spanish, and French
+- 🌓 **Dark/Light Theme**: Toggle between dark and light modes with persistent preference
+- 📱 **Responsive Design**: Works seamlessly on all devices
+- ⚡ **Fast Performance**: Built with Astro for optimal speed
+- 🎨 **Clean UI**: Modern and professional design
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+ installed
+- pnpm package manager
+
+### Installation
+
+Dependencies are already installed. If you need to reinstall:
+
+```bash
+pnpm i
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Development
 
-## 🚀 Project Structure
+Start the development server:
 
-Inside of your Astro project, you'll see the following folders and files:
+```bash
+pnpm dev
+```
 
-```text
+The site will be available at `http://localhost:4321`
+
+### Build
+
+Create a production build:
+
+```bash
+npm build
+```
+
+### Preview
+
+Preview the production build:
+
+```bash
+npm preview
+```
+
+## Customization
+
+### Update Your Information
+
+1. **Personal Details**: Edit `/src/i18n/translations.ts` to update your name, tagline, and descriptions in all languages
+2. **Skills**: Modify the skills section in `/src/pages/index.astro`
+3. **Contact Links**: Update email, GitHub, and LinkedIn URLs in `/src/pages/index.astro`
+
+### Add More Languages
+
+To add a new language:
+
+1. Open `/src/i18n/translations.ts`
+2. Add a new language object (e.g., `de` for German)
+3. Update the language switcher in `/src/components/Header.astro`
+
+### Customize Styling
+
+- **Colors**: Modify CSS variables in `/src/layouts/Layout.astro`
+- **Layout**: Update styles in `/src/pages/index.astro`
+
+## Project Structure
+
+```
 /
-├── public/
+├── public/          # Static assets
 ├── src/
-│   └── pages/
+│   ├── components/  # Reusable components
+│   │   └── Header.astro
+│   ├── i18n/        # Internationalization
+│   │   └── translations.ts
+│   ├── layouts/     # Page layouts
+│   │   └── Layout.astro
+│   └── pages/       # Routes
 │       └── index.astro
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Technologies
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- [Astro](https://astro.build) - Static Site Generator
+- TypeScript - Type Safety
+- CSS3 - Styling
 
-Any static assets, like images, can be placed in the `public/` directory.
+## License
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+MIT

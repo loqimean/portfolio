@@ -1,0 +1,110 @@
+---
+import { getTranslations, DEFAULT_LANGUAGE } from '../i18n/translations';
+
+interface Props {
+  currentLang: string;
+}
+
+const { currentLang } = Astro.props;
+const t = getTranslations(currentLang);
+
+
+// Create proper i18n links
+const getLocalizedPath = (locale: string) => {
+  if (locale === DEFAULT_LANGUAGE) return '/';
+  return `/${locale}`;
+};
+---
+
+<header class="fixed top-0 left-0 right-0 bg-white/80 dark:bg-[#1a1a1a]/80 border-b border-[var(--border-color)] z-[100] backdrop-blur-[10px]">
+  <nav class="max-w-[1200px] mx-auto px-8 py-4">
+    <div class="flex justify-between items-center">
+      <div class="text-2xl font-bold text-[var(--accent-color)]">{t.name}</div>
+      <div class="flex gap-4 items-center">
+        <div class="flex gap-2 bg-[var(--card-bg)] rounded-lg p-1">
+          <a
+            href={getLocalizedPath('en')}
+            class={`px-4 py-2 rounded-md cursor-pointer text-sm font-medium transition-all duration-200 no-underline ${
+              currentLang === 'en'
+                ? 'bg-[var(--accent-color)] text-white'
+                : 'text-[var(--text-color)] hover:bg-[var(--bg-color)]'
+            }`}
+            aria-label="Switch to English"
+          >
+            EN
+          </a>
+          <a
+            href={getLocalizedPath('uk')}
+            class={`px-4 py-2 rounded-md cursor-pointer text-sm font-medium transition-all duration-200 no-underline ${
+              currentLang === 'uk'
+                ? 'bg-[var(--accent-color)] text-white'
+                : 'text-[var(--text-color)] hover:bg-[var(--bg-color)]'
+            }`}
+            aria-label="Перемкнути на Українську"
+          >
+            UK
+          </a>
+          <a
+            href={getLocalizedPath('pl')}
+            class={`px-4 py-2 rounded-md cursor-pointer text-sm font-medium transition-all duration-200 no-underline ${
+              currentLang === 'pl'
+                ? 'bg-[var(--accent-color)] text-white'
+                : 'text-[var(--text-color)] hover:bg-[var(--bg-color)]'
+            }`}
+            aria-label="Przełącz na Polski"
+          >
+            PL
+          </a>
+          <a
+            href={getLocalizedPath('es')}
+            class={`px-4 py-2 rounded-md cursor-pointer text-sm font-medium transition-all duration-200 no-underline ${
+              currentLang === 'es'
+                ? 'bg-[var(--accent-color)] text-white'
+                : 'text-[var(--text-color)] hover:bg-[var(--bg-color)]'
+            }`}
+            aria-label="Cambiar a Español"
+          >
+            ES
+          </a>
+        </div>
+        <button
+          id="theme-toggle"
+          class="bg-[var(--card-bg)] border-none w-10 h-10 rounded-lg cursor-pointer flex items-center justify-center text-[var(--text-color)] transition-all duration-200 hover:bg-[var(--accent-color)] hover:text-white"
+          aria-label="Toggle theme"
+        >
+          <svg class="sun hidden dark:block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M10 1V3M10 17V19M19 10H17M3 10H1M16.364 16.364L14.95 14.95M5.05 5.05L3.636 3.636M16.364 3.636L14.95 5.05M5.05 14.95L3.636 16.364" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <svg class="moon block dark:hidden" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 10.5C17.5 15 13.5 18.5 9 18.5C5 18.5 1.5 15 1.5 11C1.5 6.5 5 2.5 9.5 2C9 3.5 9 5.5 10 7.5C11 9.5 13 11 15 11.5C16.5 12 17.5 11.5 18 10.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Theme toggle functionality
+  function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }
+
+  // Add event listener for theme toggle button
+  document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', toggleTheme);
+    }
+  });
+</script>
