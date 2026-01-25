@@ -1,4 +1,7 @@
 ---
+import SkillsSetIcon from '../assets/icons/skills-set.svg';
+import { SkillsSection } from '../react/skillsSection';
+
 interface Props {
   t: any;
 }
@@ -28,45 +31,22 @@ const { t } = Astro.props;
   </section>
 
   <!-- Skills Section -->
-  <section class="py-16">
-    <div class="max-w-[1200px] mx-auto px-8">
-      <h2 class="text-[var(--accent-color)]">{t.skills}</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
-        <div class="bg-[var(--card-bg)] p-8 rounded-xl border border-[var(--border-color)] transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
-          <h3 class="text-[var(--accent-color)]">Frontend</h3>
-          <ul class="list-none">
-            <li class="py-2 border-b border-[var(--border-color)]">React / Vue / Astro</li>
-            <li class="py-2 border-b border-[var(--border-color)]">TypeScript</li>
-            <li class="py-2 border-b border-[var(--border-color)]">CSS / Tailwind</li>
-            <li class="py-2">Responsive Design</li>
-          </ul>
-        </div>
-        <div class="bg-[var(--card-bg)] p-8 rounded-xl border border-[var(--border-color)] transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
-          <h3 class="text-[var(--accent-color)]">Backend</h3>
-          <ul class="list-none">
-            <li class="py-2 border-b border-[var(--border-color)]">Node.js</li>
-            <li class="py-2 border-b border-[var(--border-color)]">Python</li>
-            <li class="py-2 border-b border-[var(--border-color)]">REST / GraphQL</li>
-            <li class="py-2">Databases</li>
-          </ul>
-        </div>
-        <div class="bg-[var(--card-bg)] p-8 rounded-xl border border-[var(--border-color)] transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
-          <h3 class="text-[var(--accent-color)]">Tools</h3>
-          <ul class="list-none">
-            <li class="py-2 border-b border-[var(--border-color)]">Git / GitHub</li>
-            <li class="py-2 border-b border-[var(--border-color)]">Docker</li>
-            <li class="py-2 border-b border-[var(--border-color)]">CI/CD</li>
-            <li class="py-2">Agile</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+  <SkillsSection t={t} client:load>
+    <SkillsSetIcon class="mx-auto w-full h-fit" />
+  </SkillsSection>
 
   <!-- Contact Section -->
-  <section class="py-16 bg-[var(--card-bg)]">
-    <div class="max-w-[1200px] mx-auto px-8">
-      <h2 class="text-white font-lato uppercase">{t.contact}</h2>
+  <section class="py-16 relative bg-[#141414]">
+    <div class="bg-black-noise"></div>
+    <div class="max-w-[1200px] mx-auto px-10 py-36">
+      <div class="w-min relative">
+        <h2 class="text-white font-lato uppercase text-5xl sm:text-8xl md:text-[107px] max-w-2xl">{t.contact}</h2>
+
+        <svg width="26" height="26" class="absolute bottom-0 right-0" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M27.0605 1.06055V27.0605M27.0605 27.0605H1.06055M27.0605 27.0605L1.06055 1.06055" stroke="#ECECEC" stroke-width="3"/>
+        </svg>
+      </div>
+
       <!-- <div class="flex flex-col md:flex-row gap-8 flex-wrap mt-8">
         <a href="mailto:your.email@example.com" class="flex items-center gap-3 px-8 py-4 bg-[var(--bg-color)] border-2 border-[var(--border-color)] rounded-xl text-lg font-medium text-[var(--text-color)] transition-all duration-200 hover:border-[var(--accent-color)] hover:-translate-y-0.5 hover:shadow-lg no-underline md:w-auto w-full justify-center">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-[var(--accent-color)]">

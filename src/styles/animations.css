@@ -1,0 +1,9 @@
+@keyframes shadow-pulse
+{
+  0% {
+    box-shadow: 0 0 0 0px var(--shadow-pulse-start-color);
+  }
+  100% {
+    box-shadow: 0 0 7px 25px var(--shadow-pulse-end-color);
+  }
+}

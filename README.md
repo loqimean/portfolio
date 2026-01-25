@@ -93,7 +93,10 @@ To add a new language:
 
 - [Astro](https://astro.build) - Static Site Generator
 - TypeScript - Type Safety
-- CSS3 - Styling
+- CSS3 + TailwindCSS - Styling
+- ReactJS - components
+- GSAP - animations
+- iconify - icons
 
 ## License
 

@@ -4,6 +4,8 @@ import { DEFAULT_LANGUAGE, translations } from './src/i18n/translations';
 
 import tailwindcss from '@tailwindcss/vite';
 
+import react from '@astrojs/react';
+
 // https://astro.build/config
 export default defineConfig({
   i18n: {
@@ -16,5 +18,9 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()]
-  }
+  },
+
+  integrations: [
+    react()
+  ]
 });
