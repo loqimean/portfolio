@@ -1,6 +1,7 @@
 ---
 import SkillsSetIcon from '../assets/icons/skills-set.svg';
 import { SkillsSection } from '../react/skillsSection';
+import { HeroSection } from '../react/heroSection';
 
 interface Props {
   t: any;
@@ -9,18 +10,10 @@ interface Props {
 const { t } = Astro.props;
 ---
 
-<main class="pt-20">
+<main class="">
+<!-- <main class="pt-20"> -->
   <!-- Hero Section -->
-  <section class="min-h-[50vh] flex items-center justify-center text-center bg-gradient-to-br from-[var(--accent-color)]/10 to-transparent">
-    <div class="max-w-[1200px] mx-auto px-8">
-      <h1 class="bg-gradient-to-br from-[var(--accent-color)] to-[#e24a90] bg-clip-text text-transparent">
-        {t.name}
-      </h1>
-      <p class="text-2xl md:text-[1.5rem] text-[var(--text-color)] opacity-80">
-        {t.tagline}
-      </p>
-    </div>
-  </section>
+  <HeroSection t={t} client:load />
 
   <!-- About Section -->
   <section class="py-16 bg-[var(--card-bg)]">
