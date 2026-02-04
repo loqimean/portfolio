@@ -1,5 +1,6 @@
 export default {
   name: "Twoje Imię",
+  darkmood: "Ciemny",
   tagline: "Full Stack Developer & Designer",
   about: "O Mnie",
   aboutText: "Jestem pasjonatem programowania, który uwielbia tworzyć piękne i funkcjonalne aplikacje webowe. Dzięki doświadczeniu w nowoczesnych technologiach webowych, ożywiam pomysły poprzez czysty kod i przemyślany design.",

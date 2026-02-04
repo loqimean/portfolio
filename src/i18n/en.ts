@@ -1,5 +1,6 @@
 export default {
-  name: "Ivan Marynych",
+  name: "Ivan   Marynych",
+  darkmood: "Darkmood",
   tagline: "Full Stack Developer & Designer",
   about: "About Me",
   aboutText: "I'm a passionate developer who loves creating beautiful and functional web applications. With expertise in modern web technologies, I bring ideas to life through clean code and thoughtful design.",
