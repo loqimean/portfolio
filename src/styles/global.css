@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 @import "tailwindcss";
+
+@source "./src/react/**/*.tsx";
+
 @plugin "daisyui";
 @plugin "daisyui/theme" {
   name: "light";
@@ -17,6 +20,7 @@
 
 @theme {
   --font-sans: 'Lato', 'sans-serif';
+  --color-neutral-black: #161616;
 }
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
@@ -62,6 +66,22 @@
 
   #download-cv-button {
     @apply btn dark:bg-slate-100 btn-neutral dark:text-black dark:hover:bg-slate-200 flex items-center gap-2;
+  }
+
+  section#about-me {
+    @apply bg-accent dark:bg-neutral-black grid grid-cols-2 pt-32 md:pt-36;
+  }
+}
+
+@layer utilities {
+  section#about-me h1 {
+    @apply text-sm md:text-4xl m-0! font-normal uppercase text-white/35 inline-flex flex-col gap-6 leading-4 md:leading-12;
+  }
+}
+
+@utility prose {
+  picture {
+    @apply m-0;
   }
 }
 
