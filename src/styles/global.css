@@ -72,6 +72,14 @@
   section#about-me {
     @apply bg-accent dark:bg-neutral-black pt-32 md:pt-36 dark:border-b-2 dark:border-accent mx-5 rounded-b-2xl;
   }
+
+  header {
+    .container {
+      max-width: calc(100vw - 80px);
+
+      @apply mx-auto px-4 md:px-8 py-4 rounded-3xl overflow-hidden backdrop-blur-xl;
+    }
+  }
 }
 
 @layer utilities {

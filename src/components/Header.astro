@@ -28,22 +28,26 @@ const toggleTheme = () => {
 ---
 
 <header class="top-3 z-100 fixed w-full">
-  <nav class="container mx-auto px-8 py-4 rounded-3xl overflow-hidden backdrop-blur-xl">
-    <div class="flex justify-between items-center px-4">
-      <!-- Simple I+M logo -->
-      <svg class="dark:text-white" width="48" height="48" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 0.909046H1.32834L3.99503 4.99996L6.67166 0.909046H8V9.09087H6.95887V2.8746H6.86911L4.49565 6.36359H3.49441L1.13089 2.8746H1.04113V9.09087H0V0.909046Z" fill="currentColor"/>
-        <path d="M4.5056 2.09086V10.2727H3.50435V2.09086H4.5056Z" fill="currentColor"/>
-        <path d="M3.50435 -8.87513e-05H4.5056V0.909002H3.50435V-8.87513e-05Z" fill="currentColor"/>
-      </svg>
+  <nav class="container">
+    <div class="flex justify-between items-center px-2 md:px-4">
+      <!-- Logo -->
+      <a href="/" class="no-underline shrink-0" aria-label="Home">
+        <svg class="dark:text-white" width="48" height="48" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0.909046H1.32834L3.99503 4.99996L6.67166 0.909046H8V9.09087H6.95887V2.8746H6.86911L4.49565 6.36359H3.49441L1.13089 2.8746H1.04113V9.09087H0V0.909046Z" fill="currentColor"/>
+          <path d="M4.5056 2.09086V10.2727H3.50435V2.09086H4.5056Z" fill="currentColor"/>
+          <path d="M3.50435 -8.87513e-05H4.5056V0.909002H3.50435V-8.87513e-05Z" fill="currentColor"/>
+        </svg>
+      </a>
 
-      <div class="flex items-center gap-4 uppercase">
+      <!-- Desktop nav links -->
+      <div class="hidden md:flex items-center gap-4 uppercase">
         <a href="/" class="no-underline">Home</a>
         <a href="/" class="no-underline">Blog</a>
         <a href="/" class="no-underline">OpenSource</a>
       </div>
 
-      <div class="flex gap-4 items-center">
+      <!-- Desktop right actions -->
+      <div class="hidden md:flex gap-4 items-center">
         <!-- <ThemeToggle t={t} client:only="react" /> -->
         <a
           class="contact-link"
@@ -101,6 +105,82 @@ const toggleTheme = () => {
           </a>
         </div>
       </div>
+
+      <!-- Mobile: contact + hamburger -->
+      <div class="flex md:hidden items-center gap-3">
+        <a
+          class="contact-link"
+          href={hasContactForm ? '#contact-section' : `mailto:${contactEmail}`}
+          title={t.contact}
+          aria-label={t.contact}
+        >
+          <i class="icon-[jam--envelope] size-5"></i>
+          <span class="sr-only">{t.contact}</span>
+        </a>
+
+        <button
+          id="mobile-menu-toggle"
+          class="flex flex-col justify-center items-center w-10 h-10 gap-1.5 cursor-pointer"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <span class="hamburger-line block w-6 h-0.5 bg-current rounded-full transition-all duration-300 origin-center"></span>
+          <span class="hamburger-line block w-6 h-0.5 bg-current rounded-full transition-all duration-300"></span>
+          <span class="hamburger-line block w-6 h-0.5 bg-current rounded-full transition-all duration-300 origin-center"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div
+      id="mobile-menu"
+      class="md:hidden overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out"
+      aria-hidden="true"
+    >
+      <div class="flex flex-col gap-1 pt-4 pb-2 px-2 uppercase text-sm font-medium">
+        <a href="/" class="no-underline py-3 px-4 rounded-xl hover:bg-(--card-bg) transition-colors">Home</a>
+        <a href="/" class="no-underline py-3 px-4 rounded-xl hover:bg-(--card-bg) transition-colors">Blog</a>
+        <a href="/" class="no-underline py-3 px-4 rounded-xl hover:bg-(--card-bg) transition-colors">OpenSource</a>
+      </div>
     </div>
   </nav>
 </header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      menu.setAttribute('aria-hidden', String(isOpen));
+      menu.style.maxHeight = isOpen ? '0' : `${menu.scrollHeight}px`;
+      toggle.classList.toggle('menu-open', !isOpen);
+    });
+
+    // Close menu on link click
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.setAttribute('aria-hidden', 'true');
+        menu.style.maxHeight = '0';
+        toggle.classList.remove('menu-open');
+      });
+    });
+  }
+</script>
+
+<style>
+  #mobile-menu-toggle.menu-open .hamburger-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  #mobile-menu-toggle.menu-open .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  #mobile-menu-toggle.menu-open .hamburger-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+</style>
