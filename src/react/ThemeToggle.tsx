@@ -1,5 +1,7 @@
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+
+const DEFAULT_THEME = 'light';
 
 export const ThemeToggle = (props: { t: any }) => {
   const { t } = props;
@@ -7,7 +9,7 @@ export const ThemeToggle = (props: { t: any }) => {
     const localTheme = localStorage.getItem('theme');
     const htmlTheme = document.documentElement.getAttribute('data-theme');
 
-    return (localTheme || htmlTheme) === 'dark';
+    return (localTheme || htmlTheme) === DEFAULT_THEME;
   })
 
   const toggleTheme = () => {
