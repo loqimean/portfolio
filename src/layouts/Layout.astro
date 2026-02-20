@@ -29,8 +29,7 @@ const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || 'marynych.ivan@iclo
     <!-- Prevent theme flashing by applying theme before page renders -->
     <script is:inline>
       (function() {
-        const theme = localStorage.getItem('theme') ||
-          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        const theme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', theme);
 
         if (theme === 'dark') {
