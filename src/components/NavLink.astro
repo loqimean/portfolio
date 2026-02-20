@@ -1,0 +1,20 @@
+---
+import { safeHref } from '../utils/links';
+
+interface Props {
+  label: string;
+  href: string | null;
+  class?: string;
+}
+
+const { label, href, class: className = '' } = Astro.props;
+const resolvedHref = href ? safeHref(href, Astro.url.pathname) : null;
+---
+
+{resolvedHref ? (
+  <a href={resolvedHref} class:list={['no-underline', className]}>{label}</a>
+) : href ? (
+  <span class:list={['cursor-default', className]} aria-current="page">{label}</span>
+) : (
+  <span class:list={['opacity-40 cursor-not-allowed select-none', className]}>{label}</span>
+)}

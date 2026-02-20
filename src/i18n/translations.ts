@@ -18,3 +18,7 @@ export type TranslationKey = keyof typeof translations.en;
 export function getTranslations(lang: string = DEFAULT_LANGUAGE) {
   return translations[lang as Language] || translations.en;
 }
+
+export function getLocalizedPath(locale: string): string {
+  return locale === DEFAULT_LANGUAGE ? '/' : `/${locale}`;
+}

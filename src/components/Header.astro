@@ -1,6 +1,9 @@
 ---
-import { getTranslations, DEFAULT_LANGUAGE } from '../i18n/translations';
+import { getTranslations, getLocalizedPath } from '../i18n/translations';
 import { ThemeToggle } from '../react/ThemeToggle';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import NavLink from './NavLink.astro';
+import { safeHref } from '../utils/links';
 
 interface Props {
   currentLang: string;
@@ -11,27 +14,19 @@ interface Props {
 const { currentLang, hasContactForm = false, contactEmail = '' } = Astro.props;
 const t = getTranslations(currentLang);
 
+const NAV_LINKS = [
+  { label: 'Home',        href: getLocalizedPath(currentLang) },
+  { label: 'Blog',        href: null },
+  { label: 'OpenSource',  href: null },
+];
 
-// Create proper i18n links
-const getLocalizedPath = (locale: string) => {
-  if (locale === DEFAULT_LANGUAGE) return '/';
-  return `/${locale}`;
-};
-
-const toggleTheme = () => {
-  const currentTheme = localStorage.getItem('theme') || document.documentElement.getAttribute('data-theme');
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-  document.documentElement.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-}
 ---
 
 <header class="top-3 z-100 fixed w-full">
   <nav class="container">
     <div class="flex justify-between items-center px-2 md:px-4">
       <!-- Logo -->
-      <a href="/" class="no-underline shrink-0" aria-label="Home">
+      <a href={safeHref(getLocalizedPath(currentLang), Astro.url.pathname) ?? undefined} class="no-underline shrink-0" aria-label="Home">
         <svg class="dark:text-white" width="48" height="48" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 0.909046H1.32834L3.99503 4.99996L6.67166 0.909046H8V9.09087H6.95887V2.8746H6.86911L4.49565 6.36359H3.49441L1.13089 2.8746H1.04113V9.09087H0V0.909046Z" fill="currentColor"/>
           <path d="M4.5056 2.09086V10.2727H3.50435V2.09086H4.5056Z" fill="currentColor"/>
@@ -41,9 +36,7 @@ const toggleTheme = () => {
 
       <!-- Desktop nav links -->
       <div class="hidden md:flex items-center gap-4 uppercase">
-        <a href="/" class="no-underline">Home</a>
-        <a href="/" class="no-underline">Blog</a>
-        <a href="/" class="no-underline">OpenSource</a>
+        {NAV_LINKS.map(({ label, href }) => <NavLink {label} {href} />)}
       </div>
 
       <!-- Desktop right actions -->
@@ -58,52 +51,7 @@ const toggleTheme = () => {
           <span>{t.contact}</span>
         </a>
 
-        <div class="flex hidden gap-2 bg-(--card-bg) rounded-lg p-1">
-          <a
-            href={getLocalizedPath('en')}
-            class={`px-4 py-2 rounded-md cursor-pointer text-sm font-medium transition-all duration-200 no-underline ${
-              currentLang === 'en'
-                ? 'bg-(--accent-color) text-white'
-                : 'text-(--text-color) hover:bg-(--bg-color)'
-            }`}
-            aria-label="Switch to English"
-          >
-            EN
-          </a>
-          <a
-            href={getLocalizedPath('uk')}
-            class={`px-4 py-2 rounded-md cursor-pointer text-sm font-medium transition-all duration-200 no-underline ${
-              currentLang === 'uk'
-                ? 'bg-(--accent-color) text-white'
-                : 'text-(--text-color) hover:bg-(--bg-color)'
-            }`}
-            aria-label="Перемкнути на Українську"
-          >
-            UK
-          </a>
-          <a
-            href={getLocalizedPath('pl')}
-            class={`px-4 py-2 rounded-md cursor-pointer text-sm font-medium transition-all duration-200 no-underline ${
-              currentLang === 'pl'
-                ? 'bg-(--accent-color) text-white'
-                : 'text-(--text-color) hover:bg-(--bg-color)'
-            }`}
-            aria-label="Przełącz na Polski"
-          >
-            PL
-          </a>
-          <a
-            href={getLocalizedPath('es')}
-            class={`px-4 py-2 rounded-md cursor-pointer text-sm font-medium transition-all duration-200 no-underline ${
-              currentLang === 'es'
-                ? 'bg-(--accent-color) text-white'
-                : 'text-(--text-color) hover:bg-(--bg-color)'
-            }`}
-            aria-label="Cambiar a Español"
-          >
-            ES
-          </a>
-        </div>
+        <LanguageSwitcher currentLang={currentLang} />
       </div>
 
       <!-- Mobile: contact + hamburger -->
@@ -139,9 +87,7 @@ const toggleTheme = () => {
       aria-hidden="true"
     >
       <div class="flex flex-col gap-1 pt-4 pb-2 px-2 uppercase text-sm font-medium">
-        <a href="/" class="no-underline py-3 px-4 rounded-xl hover:bg-(--card-bg) transition-colors">Home</a>
-        <a href="/" class="no-underline py-3 px-4 rounded-xl hover:bg-(--card-bg) transition-colors">Blog</a>
-        <a href="/" class="no-underline py-3 px-4 rounded-xl hover:bg-(--card-bg) transition-colors">OpenSource</a>
+        {NAV_LINKS.map(({ label, href }) => <NavLink {label} {href} class="py-3 px-4 rounded-xl hover:bg-(--card-bg) transition-colors" />)}
       </div>
     </div>
   </nav>

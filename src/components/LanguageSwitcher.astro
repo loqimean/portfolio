@@ -1,0 +1,31 @@
+---
+import { getLocalizedPath } from '../i18n/translations';
+import { safeHref } from '../utils/links';
+
+interface Props {
+  currentLang: string;
+}
+
+const { currentLang } = Astro.props;
+
+const LOCALES = [
+  { code: 'en', label: 'EN', ariaLabel: 'Switch to English' },
+  { code: 'uk', label: 'UK', ariaLabel: 'Перемкнути на Українську' },
+  { code: 'pl', label: 'PL', ariaLabel: 'Przełącz na Polski' },
+  { code: 'es', label: 'ES', ariaLabel: 'Cambiar a Español' },
+] as const;
+
+const activeClass = 'px-4 py-2 rounded-md text-sm font-medium bg-(--accent-color) text-white';
+const inactiveClass = 'px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 no-underline text-(--text-color) hover:bg-(--bg-color)';
+---
+
+<div class="flex hidden gap-2 bg-(--card-bg) rounded-lg p-1">
+  {LOCALES.map(({ code, label, ariaLabel }) => {
+    const href = safeHref(getLocalizedPath(code), Astro.url.pathname);
+    return href ? (
+      <a href={href} class={inactiveClass} aria-label={ariaLabel}>{label}</a>
+    ) : (
+      <span class={activeClass} aria-current="page">{label}</span>
+    );
+  })}
+</div>
