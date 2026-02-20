@@ -79,7 +79,7 @@ export const ContactForm = ({ t, formspreeEndpoint, recaptchaSiteKey }: ContactF
         </div>
 
         <div className="flex-1 w-full lg:max-w-lg">
-          <form id="contact-form" ref={formRef} onSubmit={handleSubmit} encType="multipart/form-data">
+          <form id="contact-form" name="contact-form" ref={formRef} onSubmit={handleSubmit} encType="multipart/form-data">
             <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
 
             <div>
@@ -89,6 +89,7 @@ export const ContactForm = ({ t, formspreeEndpoint, recaptchaSiteKey }: ContactF
               <input
                 id="contact-name"
                 name="name"
+                autoComplete="name"
                 type="text"
                 required
                 placeholder={cf.namePlaceholder}
@@ -104,6 +105,7 @@ export const ContactForm = ({ t, formspreeEndpoint, recaptchaSiteKey }: ContactF
                 id="contact-email"
                 name="email"
                 type="email"
+                autoComplete="email"
                 required
                 placeholder={cf.emailPlaceholder}
                 disabled={status === 'submitting'}
