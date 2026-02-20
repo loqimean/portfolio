@@ -134,7 +134,7 @@
       }
 
       #contact-form {
-        @apply space-y-4;
+        @apply space-y-6;
 
         label {
           @apply ml-5;
@@ -158,7 +158,7 @@
         }
 
         textarea {
-          @apply textarea w-full bg-transparent text-white placeholder:text-white/50 rounded-none resize-none;
+          @apply textarea h-20 w-full bg-transparent text-white placeholder:text-white/50 rounded-none resize-none;
           border: none !important;
           box-shadow: none !important;
           background-image:
@@ -171,7 +171,7 @@
         }
 
         .submit-button {
-          @apply btn shadow-none w-full bg-neutral-black text-white border-0 hover:opacity-90 disabled:opacity-70 rounded-2xl px-6 py-3;
+          @apply btn shadow-none w-full mt-6 bg-neutral-black text-white border-0 hover:opacity-90 disabled:opacity-70 rounded-2xl px-6 py-3;
         }
       }
     }
