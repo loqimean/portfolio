@@ -7,8 +7,9 @@ const t = getTranslations(DEFAULT_LANGUAGE);;
 const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT || '';
 const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY || undefined;
 const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || 'marynych.ivan@icloud.com';
+const cvUrl = import.meta.env.PUBLIC_CV_FILE_PATH;
 ---
 
 <Layout title={`${t.name} - Portfolio`} lang={DEFAULT_LANGUAGE} metaDescription={t.index.metaDescription}>
-  <MainPageContent t={t} hasContactForm={!!formspreeEndpoint} contactEmail={contactEmail} formspreeEndpoint={formspreeEndpoint} recaptchaSiteKey={recaptchaSiteKey} />
+  <MainPageContent t={t} hasContactForm={!!formspreeEndpoint} contactEmail={contactEmail} formspreeEndpoint={formspreeEndpoint} recaptchaSiteKey={recaptchaSiteKey} cvUrl={cvUrl} />
 </Layout>

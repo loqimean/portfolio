@@ -14,9 +14,10 @@ interface Props {
   contactEmail?: string;
   formspreeEndpoint?: string;
   recaptchaSiteKey?: string;
+  cvUrl?: string;
 }
 
-const { t, hasContactForm = false, contactEmail = '', formspreeEndpoint = '', recaptchaSiteKey } = Astro.props;
+const { t, hasContactForm = false, contactEmail = '', formspreeEndpoint = '', recaptchaSiteKey, cvUrl } = Astro.props;
 ---
 
 <main class="pt-16">
@@ -30,7 +31,7 @@ const { t, hasContactForm = false, contactEmail = '', formspreeEndpoint = '', re
   </AboutSection>
 
   <!-- Skills Section -->
-  <SkillsSection t={t} client:load>
+  <SkillsSection t={t} cvUrl={cvUrl} client:load>
     <SkillsSetIcon class="mx-auto w-full h-fit" />
   </SkillsSection>
 

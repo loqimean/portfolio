@@ -9,11 +9,22 @@ import { animateSkillsSetIcon, resetButtonScale } from '../helpers/skillsHelper'
 
 gsap.registerPlugin(useGSAP, MotionPathHelper, ScrollTrigger, MotionPathPlugin);
 
-export const SkillsSection = (props: { t: any, children: React.ReactNode }) => {
-  const { t, children } = props;
+export const SkillsSection = (props: { t: any, children: React.ReactNode, cvUrl?: string }) => {
+  const { t, children, cvUrl } = props;
   const skillsSetIconContainerRef = useRef<HTMLDivElement>(null);
   const downloadCVButtonRef = useRef<HTMLButtonElement>(null);
   const lastScrollY = useRef<number>(0);
+
+  const handleDownloadCV = () => {
+    if (!cvUrl) return;
+
+    const a = document.createElement('a');
+
+    a.href = cvUrl;
+    a.download = cvUrl.split('/').pop() || '';
+
+    a.click();
+  };
 
   useGSAP(() => {
     animateSkillsSetIcon("astro", "top 45%", "top 10%")
@@ -75,7 +86,11 @@ export const SkillsSection = (props: { t: any, children: React.ReactNode }) => {
           <div ref={skillsSetIconContainerRef}>{children}</div>
 
           {/* Download CV black button */}
-          <button ref={downloadCVButtonRef} id="download-cv-button">
+          <button
+            ref={downloadCVButtonRef}
+            id="download-cv-button"
+            onClick={handleDownloadCV}
+          >
             <span className="w-5 h-5 icon-[humbleicons--download]"></span>
             <span>{t.downloadCV}</span>
           </button>
