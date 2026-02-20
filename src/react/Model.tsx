@@ -2,12 +2,25 @@ import { useGLTF, MeshTransmissionMaterial, Text } from '@react-three/drei'
 // import { useControls } from 'leva' // ? use this if you need to control the material properties
 import { useRef, useState, useEffect } from 'react'
 import { useFrame } from '@react-three/fiber'
-
 export default function Model(props: { t: any }) {
   const { nodes } = useGLTF('/models/crystal.glb')
   const stoneRef = useRef(null)
   const { t } = props
   const textRef = useRef(null)
+
+  const [meshScale, setMeshScale] = useState<[number, number, number]>(() => {
+    return window.innerWidth < 768 ? [0.75, 0.75, 0.75] : [1, 1, 1]
+  })
+
+  useEffect(() => {
+    const handleResize = () => {
+      setMeshScale(window.innerWidth < 768 ? [0.75, 0.75, 0.75] : [1, 1, 1])
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   // Listen for theme changes
   const [isDark, setIsDark] = useState(() => {
@@ -82,7 +95,7 @@ export default function Model(props: { t: any }) {
           {`${t.name.toLocaleUpperCase()} `.repeat(100)}
       </Text>
 
-      <mesh ref={stoneRef} {...nodes.Cube001}>
+      <mesh ref={stoneRef} {...nodes.Cube001} scale={meshScale}>
         <MeshTransmissionMaterial {...materialProps}/>
       </mesh>
     </group>
