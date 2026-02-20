@@ -4,7 +4,7 @@ export const HeroSection = (props: { t: any }) => {
   const { t } = props
 
   return (
-    <section className="min-h-screen overflow-hidden flex flex-col bg-accent dark:bg-neutral-black h-screen">
+    <section className="min-h-screen overflow-hidden flex flex-col bg-accent mx-5 rounded-t-3xl dark:bg-neutral-black h-screen">
       <div className="relative mx-auto h-full container">
         <Scene t={t} />
         <div className="flex flex-col gap-2 mt-auto absolute bottom-10 left-5">

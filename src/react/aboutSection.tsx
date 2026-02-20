@@ -29,18 +29,20 @@ export const AboutSection = (props: { t: any, children: React.ReactNode }) => {
 
   return (
     <section id="about-me" ref={aboutSectionRef}>
-      <div className="flex items-end">
-        {children}
-      </div>
+      <div className="container mx-auto grid grid-cols-2">
+        <div className="flex items-end">
+          {children}
+        </div>
 
-      <div className="pr-4 flex flex-col h-full">
-        <h1>
-          <span>{t.aboutText}</span>
-          <span>{t.aboutText2}</span>
-        </h1>
+        <div className="pr-4 flex flex-col h-full">
+          <h1>
+            <span>{t.aboutText}</span>
+            <span>{t.aboutText2}</span>
+          </h1>
 
-        <div className="mt-20 md:mt-60 pb-10 border-t-2 border-white/10 pt-6">
-          <p className="text-[10px] md:text-base text-white/70">{t.aboutText3}</p>
+          <div className="mt-20 md:mt-60 pb-10 border-t-2 border-white/10 pt-6">
+            <p className="text-[10px] md:text-base text-white/70">{t.aboutText3}</p>
+          </div>
         </div>
       </div>
     </section>

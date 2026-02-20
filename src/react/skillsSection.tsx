@@ -68,7 +68,7 @@ export const SkillsSection = (props: { t: any, children: React.ReactNode }) => {
   }, []);
 
   return (
-    <section className="py-44 relative">
+    <section className="pb-20 pt-32 lg:py-44 relative">
       <div className="px-10">
         {/* Skills Grid */}
         <div className="flex flex-col items-center justify-center gap-10">
