@@ -5,6 +5,7 @@ import AvatarPhoto from '../assets/images/avatar.png';
 import { SkillsSection } from '../react/skillsSection';
 import { HeroSection } from '../react/heroSection';
 import { AboutSection } from '../react/aboutSection';
+import Testimonials from '../components/Testimonials.astro';
 
 interface Props {
   t: any;
@@ -13,7 +14,7 @@ interface Props {
 const { t } = Astro.props;
 ---
 
-<main class="">
+<main class="pt-16">
 <!-- <main class="pt-20"> -->
   <!-- Hero Section -->
   <HeroSection t={t} client:load />
@@ -27,6 +28,9 @@ const { t } = Astro.props;
   <SkillsSection t={t} client:load>
     <SkillsSetIcon class="mx-auto w-full h-fit" />
   </SkillsSection>
+
+  <!-- Testimonials Section -->
+  <Testimonials t={t} />
 
   <!-- Contact Section -->
   <section class="py-16 relative bg-[#141414]">

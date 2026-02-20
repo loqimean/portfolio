@@ -47,7 +47,8 @@
   }
 
   html {
-    @apply bg-[var(--bg-color)] text-[var(--text-color)] transition-colors duration-300;
+    @apply bg-(--bg-color)! text-(--text-color) transition-colors duration-300;
+    scroll-behavior: smooth;
   }
 
   body {
@@ -69,7 +70,7 @@
   }
 
   section#about-me {
-    @apply bg-accent dark:bg-neutral-black grid grid-cols-2 pt-32 md:pt-36;
+    @apply bg-accent dark:bg-neutral-black pt-32 md:pt-36 dark:border-b-2 dark:border-accent mx-5 rounded-b-2xl;
   }
 }
 
@@ -77,11 +78,43 @@
   section#about-me h1 {
     @apply text-sm md:text-4xl m-0! font-normal uppercase text-white/35 inline-flex flex-col gap-6 leading-4 md:leading-12;
   }
+
+  section#testimonials {
+    @apply container mx-auto py-20 px-5 flex flex-col gap-20;
+
+    .cards-container {
+      @apply flex flex-wrap gap-y-10 justify-around items-start;
+    }
+
+    .card {
+      @apply flex flex-col justify-center items-center px-2 w-full md:max-w-[320px];
+
+      .avatar {
+        @apply rounded-full overflow-hidden object-cover;
+      }
+
+      .name {
+        @apply mt-3 font-medium text-xl mb-0;
+      }
+
+      .position {
+        @apply text-slate-600 font-medium text-sm mt-1 mb-0 text-center;
+      }
+
+      .quote {
+        @apply text-center mt-4 mb-0;
+      }
+    }
+  }
 }
 
 @utility prose {
   picture {
     @apply m-0;
+  }
+
+  blockquote {
+    @apply border-0 p-0 m-0 text-slate-400 text-base not-italic;
   }
 }
 

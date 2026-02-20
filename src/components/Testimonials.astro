@@ -1,0 +1,42 @@
+---
+import IrynaYetskaloAvatar from '../assets/images/testimonials/1.png';
+import AnnaGuglielmoAvatar from '../assets/images/testimonials/2.png';
+import KhrystynaRozhniatovskaAvatar from '../assets/images/testimonials/3.png';
+import { Picture } from 'astro:assets';
+
+interface Props {
+  t: any;
+}
+
+const { t } = Astro.props;
+const avatars = [IrynaYetskaloAvatar, AnnaGuglielmoAvatar, KhrystynaRozhniatovskaAvatar];
+---
+
+<section id="testimonials">
+  <div class="flex flex-col gap-10">
+    <div class="bg-neutral-black rounded-2xl w-fit h-fit py-2 mx-auto px-3">
+      <span class="icon-[mdi--account-group] size-8 bg-white"></span>
+    </div>
+
+    <div class="flex flex-col gap-3 text-center">
+      <h2 class="m-0! text-5xl font-extrabold">What Clients Say</h2>
+      <p class="text-lg text-[#7B809A] leading-8 max-w-3xl mx-auto">{t.testimonials.description}</p>
+    </div>
+  </div>
+
+  <!-- testimonials cards -->
+  <div class="cards-container">
+    {t.testimonials.items.map((item: any, index: number) => (
+    <div class="card">
+      <Picture src={avatars[index]} alt={item.name} width={80} densities={[1, 2]} pictureAttributes={{ class: 'avatar' }} />
+
+      <p class="name">{item.name}</p>
+      <p class="position">{item.description}</p>
+
+      <blockquote class="quote">
+          "{item.quote}"
+        </blockquote>
+      </div>
+    ))}
+  </div>
+</section>

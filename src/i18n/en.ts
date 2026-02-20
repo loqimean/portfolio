@@ -15,6 +15,35 @@ export default {
   linkedin: "LinkedIn",
   copyright: "All rights reserved.",
   downloadCV: "Download CV",
+  testimonials: {
+    title: "Testimonials",
+    description: "Client-Centric Approach: I prioritize understanding your unique requirements to deliver tailored solutions that align with your objectives.",
+    items: [
+      {
+        name: "Iryna Yetskalo",
+        description: "Founder & CEO @ HubOsvit",
+        quote: `
+          I was working with Ivan when he just started to develop on Ruby on Rails.
+          That’s an amazing to see how quickly he grew up from the beginner to the strong programmer. I appreciate his work and I hope to work with him again.
+          Thank you, Ivan 🤝
+        `,
+      },
+      {
+        name: "Anna Guglielmo",
+        description: "COO, Operational Manager for Digital Companies",
+        quote: `
+          Ivan is a very good Ruby developer, he has helped me with my project. He is a very kind and polite person, always available to find the right solutions, very recommended!
+        `,
+      },
+      {
+        name: "Khrystyna Rozhniatovska",
+        description: "Head of IT Delivery at Crunch",
+        quote: `
+          I have been managing Ivan for just a few month but can certainly tell that he is very passionate, knowledgable and talented developer. Ivan was a perfect match for our team both from technical side and soft skills. I highly recommend working with Ivan!
+        `,
+      },
+    ],
+  },
   skills: {
     title: "Skills",
   },

@@ -4,6 +4,10 @@ export default {
   tagline: "Desarrollador Full Stack y Diseñador",
   about: "Sobre Mí",
   aboutText: "Soy un desarrollador apasionado que ama crear aplicaciones web hermosas y funcionales. Con experiencia en tecnologías web modernas, doy vida a las ideas a través de código limpio y diseño cuidadoso.",
+  aboutText2: "Construyo backends robustos y frontends elegantes — creando productos digitales fast, escalables y centrados en el usuario.",
+  aboutText3: "Transformo ideas complejas en aplicaciones web rápidas y escalables. Desde la base de datos hasta la UI — creo código limpio y experiencias intuitivas con Ruby on Rails en el núcleo.",
+  recentProject: "Proyecto reciente",
+  openSource: "Open Source",
   projects: "Proyectos",
   contact: "Contacto",
   email: "Correo",
@@ -13,6 +17,15 @@ export default {
   downloadCV: "Descargar CV",
   skills: {
     title: "Habilidades",
+  },
+  testimonials: {
+    title: "Testimonios",
+    description: "Enfoque centrado en el cliente: Priorizo entender tus requisitos únicos para ofrecer soluciones adaptadas a tus objetivos.",
+    items: [
+      { name: "Iryna Yetskalo", description: "Founder & CEO @ HubOsvit", quote: "I was working with Ivan when he just started to develop on Ruby on Rails. That's an amazing to see how quickly he grew up from the beginner to the strong programmer. I appreciate his work and I hope to work with him again. Thank you, Ivan 🤝" },
+      { name: "Anna Guglielmo", description: "COO, Operational Manager for Digital Companies", quote: "Ivan is a very good Ruby developer, he has helped me with my project. He is a very kind and polite person, always available to find the right solutions, very recommended!" },
+      { name: "Khrystyna Rozhniatovska", description: "Head of IT Delivery at Crunch", quote: "I have been managing Ivan for just a few month but can certainly tell that he is very passionate, knowledgable and talented developer. Ivan was a perfect match for our team both from technical side and soft skills. I highly recommend working with Ivan!" },
+    ],
   },
   index: {
     metaDescription: "¡Bienvenido a mi portafolio! Soy un Desarrollador Full Stack especializado en crear aplicaciones web hermosas y funcionales.",
