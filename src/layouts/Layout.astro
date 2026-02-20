@@ -12,6 +12,8 @@ interface Props {
 }
 
 const { title, metaDescription, lang = DEFAULT_LANGUAGE } = Astro.props;
+const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT || '';
+const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || 'marynych.ivan@icloud.com';
 ---
 
 <!doctype html>
@@ -38,7 +40,7 @@ const { title, metaDescription, lang = DEFAULT_LANGUAGE } = Astro.props;
     </script>
   </head>
   <body class="prose">
-    <Header currentLang={lang} />
+    <Header currentLang={lang} hasContactForm={!!formspreeEndpoint} contactEmail={contactEmail} />
     <slot />
     <Footer currentLang={lang} />
   </body>

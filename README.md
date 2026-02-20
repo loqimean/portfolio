@@ -59,6 +59,25 @@ npm preview
 2. **Skills**: Modify the skills section in `/src/pages/index.astro`
 3. **Contact Links**: Update email, GitHub, and LinkedIn URLs in `/src/pages/index.astro`
 
+### Contact Form Setup
+
+The contact form uses [Formspree](https://formspree.io) to send submissions to your email. Without configuration, the "Contact Me" button falls back to a `mailto:` link.
+
+1. **Create a Formspree account** at [formspree.io](https://formspree.io)
+2. **Create a new form** and add your Gmail (or any email) as the recipient
+3. **Copy your form endpoint** (e.g. `https://formspree.io/f/abc123xyz`)
+4. **Add to `.env`**:
+   ```
+   PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/YOUR_FORM_ID
+   ```
+
+5. **Optional – reCAPTCHA** (recommended for spam protection):
+   - Create reCAPTCHA v2 keys at [Google reCAPTCHA Admin](https://www.google.com/recaptcha/admin)
+   - Add the **site key** to `.env`: `PUBLIC_RECAPTCHA_SITE_KEY=your_site_key`
+   - In Formspree dashboard: Settings → Spam Prevention → enable reCAPTCHA and add your **secret key**
+
+6. **Vercel**: Add the same variables in Project Settings → Environment Variables
+
 ### Add More Languages
 
 To add a new language:

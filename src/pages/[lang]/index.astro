@@ -14,8 +14,11 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params;
 const t = getTranslations(lang as Language);
+const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT || '';
+const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY || undefined;
+const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || 'marynych.ivan@icloud.com';
 ---
 
 <Layout title={`${t.name} - Portfolio`} lang={lang || DEFAULT_LANGUAGE} metaDescription={t.index.metaDescription}>
-  <MainPageContent t={t} />
+  <MainPageContent t={t} hasContactForm={!!formspreeEndpoint} contactEmail={contactEmail} formspreeEndpoint={formspreeEndpoint} recaptchaSiteKey={recaptchaSiteKey} />
 </Layout>

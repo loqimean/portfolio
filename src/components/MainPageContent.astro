@@ -5,13 +5,18 @@ import AvatarPhoto from '../assets/images/avatar.png';
 import { SkillsSection } from '../react/skillsSection';
 import { HeroSection } from '../react/heroSection';
 import { AboutSection } from '../react/aboutSection';
+import { ContactForm } from '../react/ContactForm';
 import Testimonials from '../components/Testimonials.astro';
 
 interface Props {
   t: any;
+  hasContactForm?: boolean;
+  contactEmail?: string;
+  formspreeEndpoint?: string;
+  recaptchaSiteKey?: string;
 }
 
-const { t } = Astro.props;
+const { t, hasContactForm = false, contactEmail = '', formspreeEndpoint = '', recaptchaSiteKey } = Astro.props;
 ---
 
 <main class="pt-16">
@@ -33,16 +38,28 @@ const { t } = Astro.props;
   <Testimonials t={t} />
 
   <!-- Contact Section -->
-  <section class="py-16 relative bg-[#141414]">
-    <div class="bg-black-noise"></div>
-    <div class="max-w-[1200px] mx-auto px-10 py-36">
-      <div class="w-min relative">
-        <h2 class="text-white font-lato uppercase text-5xl sm:text-8xl md:text-[107px] max-w-2xl">{t.contact}</h2>
 
-        <svg width="26" height="26" class="absolute bottom-0 right-0" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M27.0605 1.06055V27.0605M27.0605 27.0605H1.06055M27.0605 27.0605L1.06055 1.06055" stroke="#ECECEC" stroke-width="3"/>
-        </svg>
+  {hasContactForm && formspreeEndpoint ? (
+    <ContactForm
+      client:load
+      t={t}
+      formspreeEndpoint={formspreeEndpoint}
+      recaptchaSiteKey={recaptchaSiteKey}
+    />
+  ) : (
+    <div class="py-16 bg-accent mx-5 rounded-2xl">
+      <div class="container mx-auto py-20 sm:py-36 px-3 flex flex-col items-center">
+        <h2 class="text-white text-center font-lato mt-0 uppercase font-medium text-4xl sm:text-8xl md:text-[107px]">{t.contactTitle}</h2>
+
+        <a
+          class="contact-link sm:scale-150"
+          href={`mailto:${contactEmail}`}
+          title={t.contact}
+        >
+          <i class="icon-[jam--envelope] size-6"></i>
+          <span>{t.contact}</span>
+        </a>
       </div>
     </div>
-  </section>
+  )}
 </main>

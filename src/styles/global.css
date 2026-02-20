@@ -106,6 +106,72 @@
       }
     }
   }
+
+  section#contact-section {
+    @apply py-16 bg-accent mx-5 rounded-2xl;
+
+    .container {
+      @apply flex flex-col lg:flex-row justify-between mx-auto px-6 py-12 pt-3 pb-0 md:pb-12 xl:pt-32 gap-20;
+
+      .header {
+        @apply relative w-full max-w-sm sm:max-w-md h-fit;
+
+        h2 {
+          @apply text-white uppercase font-medium text-5xl sm:text-7xl xl:text-8xl leading-tight m-0!;
+        }
+
+        svg {
+          @apply absolute bottom-0 right-0;
+        }
+      }
+
+      #contact-form {
+        @apply space-y-4;
+
+        label {
+          @apply ml-5;
+        }
+
+        input, textarea {
+          @apply focus:outline-none;
+        }
+
+        input:not([type="hidden"]) {
+          @apply input w-full bg-transparent text-white placeholder:text-white/50 rounded-none;
+          border: none !important;
+          box-shadow: none !important;
+          background-image:
+            linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+            linear-gradient(to top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+            linear-gradient(to top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+          background-size: 100% 1px, 1px 10%, 1px 10%;
+          background-position: bottom center, bottom left, bottom right;
+          background-repeat: no-repeat;
+        }
+
+        textarea {
+          @apply textarea w-full bg-transparent text-white placeholder:text-white/50 rounded-none resize-none;
+          border: none !important;
+          box-shadow: none !important;
+          background-image:
+            linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+            linear-gradient(to top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+            linear-gradient(to top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+          background-size: 100% 1px, 1px 10%, 1px 10%;
+          background-position: bottom center, bottom left, bottom right;
+          background-repeat: no-repeat;
+        }
+
+        .submit-button {
+          @apply btn shadow-none w-full bg-neutral-black text-white border-0 hover:opacity-90 disabled:opacity-70 rounded-2xl px-6 py-3;
+        }
+      }
+    }
+  }
+
+  .contact-link {
+    @apply bg-neutral-black text-white w-fit rounded-2xl px-4 py-2 no-underline hover:opacity-90 transition-opacity inline-flex items-center gap-2;
+  }
 }
 
 @utility prose {
