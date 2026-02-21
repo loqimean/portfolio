@@ -1,0 +1,14 @@
+---
+const isProduction = import.meta.env.PROD;
+---
+
+{isProduction && (
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2G51FB10BB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-2G51FB10BB');
+  </script>
+)}
