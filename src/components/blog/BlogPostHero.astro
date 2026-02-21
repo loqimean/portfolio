@@ -1,0 +1,46 @@
+---
+interface Props {
+  title: string;
+  category: string;
+  tags: string[];
+  month: string;
+  day: string;
+  year: string;
+  readTime: string;
+}
+
+const { title, category, tags, month, day, year, readTime } = Astro.props;
+---
+
+<section class="bps-hero">
+  <div class="bps-hero-inner">
+
+    <div class="bps-nav">
+      <a href="/blog" class="bps-back">← Blog</a>
+      <span class="bps-badge">{category}</span>
+    </div>
+
+    <h1 class="bps-title">{title}</h1>
+
+    <div class="bps-meta">
+
+      <div class="bps-date">
+        <span class="bps-mon">{month}</span>
+        <span class="bps-day">{day}</span>
+        <span class="bps-yr">{year}</span>
+      </div>
+
+      <div class="bps-meta-right">
+        <span class="bps-rt">{readTime} read</span>
+        <div class="bps-tags">
+          {tags.map((t, i) => (
+            <span class="bps-tag">
+              {i > 0 && <span class="bps-tag-sep"> / </span>}{t}
+            </span>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

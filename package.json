@@ -32,7 +32,8 @@
   },
   "devDependencies": {
     "@iconify/json": "^2.2.431",
-    "@iconify/tailwind4": "^1.2.1"
+    "@iconify/tailwind4": "^1.2.1",
+    "rehype-accessible-emojis": "^0.3.2"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

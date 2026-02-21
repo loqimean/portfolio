@@ -1,0 +1,37 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  pubDate: Date;
+  tags: string[];
+  readTime: number;
+}
+
+const { title, description, slug, pubDate, tags, readTime } = Astro.props;
+
+const formattedDate = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+}).format(pubDate);
+---
+
+<a href={`/blog/${slug}`} class="blog-card">
+  <div class="blog-card-inner">
+
+    {tags.length > 0 && (
+      <span class="blog-card-tag">{tags[0]}</span>
+    )}
+
+    <h2 class="blog-card-title">{title}</h2>
+
+    <p class="blog-card-excerpt">{description}</p>
+
+    <div class="blog-card-footer">
+      <span>{formattedDate}</span>
+      <span>{readTime} min read</span>
+    </div>
+
+  </div>
+</a>

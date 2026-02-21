@@ -1,0 +1,48 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  related: CollectionEntry<'blog'>[];
+}
+
+const { related } = Astro.props;
+---
+
+{related.length > 0 ? (
+  <section class="bps-more">
+    <div class="bps-more-wrap">
+
+      <div class="bps-more-hd">
+        <span class="bps-more-label">More Articles</span>
+        <a href="/blog" class="bps-more-all">View all →</a>
+      </div>
+
+      <div class="bps-more-grid">
+        {related.map(r => {
+          const rm = r.data.pubDate.toLocaleString('en-US', { month: 'short' }).toUpperCase();
+          const rd = String(r.data.pubDate.getDate()).padStart(2, '0');
+          const ry = String(r.data.pubDate.getFullYear());
+          return (
+            <a href={`/blog/${r.slug}`} class="bps-more-card">
+              <span class="bps-more-cat">{r.data.category}</span>
+              <h3 class="bps-more-title">{r.data.title}</h3>
+              <div class="bps-more-foot">
+                <span>{rm} {rd}, {ry}</span>
+                <span>{r.data.readTime} read</span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+
+    </div>
+  </section>
+) : (
+  <section class="bps-more-empty">
+    <div class="bps-more-wrap">
+      <div class="bps-more-back-row">
+        <a href="/blog" class="bps-more-all">← Back to all articles</a>
+      </div>
+    </div>
+  </section>
+)}

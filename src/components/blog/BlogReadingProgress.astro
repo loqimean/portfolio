@@ -1,0 +1,21 @@
+---
+---
+
+<div id="bps-bar" class="bps-bar"></div>
+
+<script>
+  const bar = document.getElementById('bps-bar') as HTMLElement | null;
+
+  function tick() {
+    if (!bar) return;
+    const pct =
+      (window.scrollY /
+        (document.documentElement.scrollHeight - window.innerHeight)) *
+      100;
+    bar.style.width = `${Math.min(100, pct)}%`;
+  }
+
+  window.addEventListener('scroll', tick, { passive: true });
+
+  tick();
+</script>

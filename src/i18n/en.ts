@@ -11,6 +11,14 @@ export default {
   projects: "Projects",
   contact: "Contact me",
   contactTitle: "Let's work togeeeether",
+  blog: {
+    title: "Blog",
+    meta: {
+      title: "Blog — Web Engineering & Performance",
+      description: "Deep dives into Ruby on Rails, web architecture, performance optimization, and product engineering. Personal notes and practical insights by Ivan Marynych.",
+    },
+    noPosts: "No posts found",
+  },
   contactForm: {
     title: "Contact me",
     name: "Enter your name",
@@ -67,6 +75,6 @@ export default {
     title: "Skills",
   },
   index: {
-    metaDescription: "Welcome to my portfolio! I'm a Full Stack Developer specializing in creating beautiful and functional web applications.",
+    metaDescription: "Ruby on Rails expert specializing in scalable architecture, performance optimization, and product-driven development. Portfolio and technical blog of Ivan Marynych.",
   }
 } as const;

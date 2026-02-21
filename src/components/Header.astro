@@ -1,6 +1,5 @@
 ---
 import { getTranslations, getLocalizedPath } from '../i18n/translations';
-import { ThemeToggle } from '../react/ThemeToggle';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import NavLink from './NavLink.astro';
 import { safeHref } from '../utils/links';
@@ -16,7 +15,7 @@ const t = getTranslations(currentLang);
 
 const NAV_LINKS = [
   { label: 'Home',        href: getLocalizedPath(currentLang) },
-  { label: 'Blog',        href: null },
+  { label: 'Blog',        href: '/blog' },
   { label: 'OpenSource',  href: null },
 ];
 

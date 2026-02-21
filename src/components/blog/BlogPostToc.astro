@@ -1,0 +1,71 @@
+---
+interface TocItem {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  toc: TocItem[];
+}
+
+const { toc } = Astro.props;
+---
+
+{toc.length > 0 && (
+  <aside class="bps-toc">
+    <span class="bps-toc-label">Contents</span>
+
+    <nav>
+      {toc.map(h => (
+        <a href={`#${h.slug}`} class="bps-toc-link" data-sec={h.slug}>
+          {h.text}
+        </a>
+      ))}
+    </nav>
+
+    <div class="bps-toc-track">
+      <div id="bps-toc-fill" class="bps-toc-fill"></div>
+    </div>
+  </aside>
+)}
+
+<script>
+  const links = document.querySelectorAll<HTMLElement>('.bps-toc-link');
+  const fill  = document.getElementById('bps-toc-fill');
+
+  function setActive(slug: string) {
+    links.forEach(l => l.classList.remove('bps-active'));
+
+    const active = document.querySelector<HTMLElement>(`.bps-toc-link[data-sec="${slug}"]`);
+
+    if (!active) return;
+
+    active.classList.add('bps-active');
+
+    const idx = Array.from(links).indexOf(active);
+
+    if (fill && idx >= 0) fill.style.width = `${((idx + 1) / links.length) * 100}%`;
+  }
+
+  const sections = document.querySelectorAll<HTMLElement>('.bps-article h2[id]');
+  if (sections.length) {
+    sections.forEach(s =>
+      new IntersectionObserver(
+        entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); },
+        { rootMargin: '-15% 0px -70% 0px' }
+      ).observe(s)
+    );
+    if (sections[0]) setActive(sections[0].id);
+  }
+
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+
+      const id = link.getAttribute('data-sec');
+
+      document.getElementById(id ?? '')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>

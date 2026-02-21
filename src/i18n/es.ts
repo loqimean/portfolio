@@ -10,6 +10,14 @@ export default {
   openSource: "Open Source",
   projects: "Proyectos",
   contact: "Contacto",
+  blog: {
+    title: "Blog",
+    meta: {
+      title: "Blog — Ruby on Rails, Ingeniería Web & Rendimiento",
+      description: "Notas y escritos personales de Ivan Marynych sobre Ruby on Rails, ingeniería web y optimización de rendimiento.",
+    },
+    noPosts: "No hay posts disponibles",
+  },
   contactForm: {
     title: "Contáctame",
     name: "Nombre",
@@ -46,6 +54,6 @@ export default {
     ],
   },
   index: {
-    metaDescription: "¡Bienvenido a mi portafolio! Soy un Desarrollador Full Stack especializado en crear aplicaciones web hermosas y funcionales.",
+    metaDescription: "Experto en Ruby on Rails especializado en arquitectura escalable, optimización de rendimiento y desarrollo orientado a productos. Portafolio y blog técnico de Ivan Marynych.",
   }
 } as const;

@@ -1,0 +1,79 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { DEFAULT_LANGUAGE, getTranslations } from '../../i18n/translations';
+
+const t = getTranslations(DEFAULT_LANGUAGE);
+const raw = await getCollection('blog', ({ data }) => !data.draft);
+const posts = raw
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .map(entry => ({
+    title:    entry.data.title,
+    excerpt:  entry.data.excerpt,
+    category: entry.data.category,
+    tags:     entry.data.tags,
+    readTime: entry.data.readTime,
+    slug:     `/blog/${entry.slug}`,
+    month: entry.data.pubDate.toLocaleString('en-US', { month: 'short' }).toUpperCase(),
+    day:   String(entry.data.pubDate.getDate()).padStart(2, '0'),
+    year:  String(entry.data.pubDate.getFullYear()),
+  }));
+---
+
+<Layout title={`${t.blog.meta.title} | ${t.name}`} metaDescription={t.blog.meta.description} prose={false}>
+  <main>
+
+    <!-- ── Hero ─────────────────────────────────────────── -->
+    <section class="bl-hero mt-18!">
+      <div class="bl-hero-inner">
+        <div class="bl-hero-top">
+          <small>Notes & Writing</small>
+          <span class="bl-badge">2025–2026</span>
+        </div>
+        <h1 class="bl-title">{t.blog.title}</h1>
+        <div class="bl-hero-foot">
+          <span class="bl-count">{posts.length} Articles</span>
+          <div class="bl-cats">
+            {[...new Set(posts.map(p => p.category))].map(cat => (
+              <span class="bl-cat-pill">{cat}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Posts list ────────────────────────────────────── -->
+    <section class="bl-list-section">
+      <div class="bl-list-inner">
+
+        {posts.map((post, _index) => (
+          <article class="bl-item">
+            <a href={post.slug} class="bl-item-link">
+
+              <!-- Date column -->
+              <div class="bl-date">
+                <span class="bl-mon">{post.month}</span>
+                <span class="bl-day">{post.day}</span>
+                <span class="bl-yr">{post.year}</span>
+              </div>
+
+              <!-- Content column -->
+              <div class="bl-content">
+                <span class="bl-cat">{post.category}</span>
+                <h2 class="bl-post-title">{post.title}</h2>
+                <p class="bl-excerpt">{post.excerpt}</p>
+                <span class="bl-read">{post.readTime} read</span>
+              </div>
+
+              <!-- Arrow -->
+              <div class="bl-arrow">→</div>
+
+            </a>
+          </article>
+        ))}
+
+      </div>
+    </section>
+
+  </main>
+</Layout>

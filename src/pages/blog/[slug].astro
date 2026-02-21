@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import BlogReadingProgress from '../../components/blog/BlogReadingProgress.astro';
+import BlogPostHero from '../../components/blog/BlogPostHero.astro';
+import BlogPostToc from '../../components/blog/BlogPostToc.astro';
+import BlogPostRelated from '../../components/blog/BlogPostRelated.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(entry => ({
+    params: { slug: entry.slug },
+    props:  { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await entry.render();
+
+const { title, excerpt, category, tags, pubDate, readTime } = entry.data;
+
+const month = pubDate.toLocaleString('en-US', { month: 'short' }).toUpperCase();
+const day   = String(pubDate.getDate()).padStart(2, '0');
+const year  = String(pubDate.getFullYear());
+
+const toc = headings.filter(h => h.depth === 2);
+
+const allPosts = await getCollection('blog');
+const related  = allPosts
+  .filter(p => p.slug !== entry.slug)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<Layout title={`${title} — Ivan Marynych`} metaDescription={excerpt} prose={false}>
+  <BlogReadingProgress />
+
+  <main>
+    <BlogPostHero {title} {category} {tags} {month} {day} {year} {readTime} />
+
+    <!-- ── Body ───────────────────────────────────────────── -->
+    <section class="blog-body">
+      <div class="blog-body-wrap">
+
+        <BlogPostToc {toc} />
+
+        <!-- Article -->
+        <article class="bps-article" id="bps-article">
+          <Content />
+
+          <footer class="blog-article-footer">
+            <span class="blog-footer-label">Tagged</span>
+            {tags.map(t => (
+              <span class="blog-footer-tag">{t}</span>
+            ))}
+          </footer>
+        </article>
+
+      </div>
+    </section>
+
+    <BlogPostRelated {related} />
+
+  </main>
+</Layout>

@@ -10,6 +10,14 @@ export default {
   openSource: "Open Source",
   projects: "Projekty",
   contact: "Kontakt",
+  blog: {
+    title: "Blog",
+    meta: {
+      title: "Blog — Ruby on Rails, Inżynieria Webowa & Wydajność",
+      description: "Głębokie analizy Ruby on Rails, architektury webowej, optymalizacji wydajności i inżynierii produktowej. Osobiste notatki i praktyczne wskazówki od Ivana Marynycha.",
+    },
+    noPosts: "Brak dostępnych postów",
+  },
   contactForm: {
     title: "Skontaktuj się",
     name: "Imię",
@@ -46,6 +54,6 @@ export default {
     ],
   },
   index: {
-    metaDescription: "Witamy w moim portfolio! Jestem Full Stack Developerem specjalizującym się w tworzeniu pięknych i funkcjonalnych aplikacji webowych.",
+    metaDescription: "Ekspert w Ruby on Rails specjalizujący się w skalowalnej architekturze, optymalizacji wydajności i rozwoju produktowym. Portfolio i blog techniczny Ivana Marynycha.",
   }
 } as const;
