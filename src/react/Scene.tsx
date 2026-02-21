@@ -6,7 +6,11 @@ export default function Index(props: { t: any }) {
   const { t } = props
 
   return (
-    <div className="h-full -mx-30">
+    <div className="h-full -mx-30 ultrawide:mx-0 relative">
+      {/* Edge fade overlays for ultra-wide screens */}
+      <div className="absolute hidden ultrawide:block -ml-2 inset-y-0 left-0 w-32 z-10 pointer-events-none bg-linear-to-r from-accent dark:from-neutral-black to-transparent" />
+      <div className="absolute hidden ultrawide:block -mr-2 inset-y-0 right-0 w-32 z-10 pointer-events-none bg-linear-to-l from-accent dark:from-neutral-black to-transparent" />
+
       <Canvas shadows={true} color='red' className="w-full h-full" camera={{ position: [0, 0, 5], rotation: [0, 0, 0.3] }}>
           <Model t={t} />
 

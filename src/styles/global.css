@@ -22,6 +22,7 @@
   --font-sans: 'Lato', 'sans-serif';
   --default-font-family: 'Lato', 'sans-serif';
   --color-neutral-black: #161616;
+  --breakpoint-ultrawide: 1814px;
 }
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
@@ -67,7 +68,7 @@
   }
 
   #download-cv-button {
-    @apply btn dark:bg-slate-100 btn-neutral dark:text-black dark:hover:bg-slate-200 flex items-center gap-2;
+    @apply btn dark:bg-slate-100 shadow-none btn-neutral dark:text-black dark:hover:bg-slate-200 flex items-center gap-2;
   }
 
   section#about-me {
@@ -82,6 +83,14 @@
       backdrop-filter: blur(24px);
 
       @apply mx-auto px-4 md:px-8 py-4 rounded-3xl overflow-hidden;
+    }
+  }
+
+  section#skills-section {
+    @apply pb-10 pt-24 lg:py-44 relative;
+
+    foreignObject {
+      @apply hidden md:block;
     }
   }
 }

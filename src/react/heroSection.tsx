@@ -45,7 +45,7 @@ export const HeroSection = (props: { t: any }) => {
         <Suspense fallback={<SceneLoader />}>
           <Scene t={t} />
         </Suspense>
-        <div className="flex flex-col gap-2 mt-auto absolute bottom-10 left-5">
+        <div className="flex z-10 flex-col gap-2 mt-auto absolute bottom-10 left-5">
           <a href="https://github.com/loqimean" title="GitHub" target="_blank" rel="noopener noreferrer">
             <span className="icon-[jam--github] size-6 md:size-10"></span>
           </a>
@@ -59,7 +59,7 @@ export const HeroSection = (props: { t: any }) => {
             <span className="icon-[jam--envelope] size-6 md:size-10"></span>
           </a>
         </div>
-        <div className="absolute bottom-10 right-5">
+        <div className="z-10 absolute bottom-10 right-5">
           <a href="https://github.com/loqimean" title="Recent Project" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline">
             <span className="uppercase text-sm md:text-xl">{t.recentProject}</span>
           </a>
