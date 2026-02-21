@@ -36,8 +36,8 @@ export const AboutSection = (props: { t: any, children: React.ReactNode }) => {
 
         <div className="pr-4 flex flex-col h-full">
           <h1>
-            <span>{t.aboutText}</span>
-            <span>{t.aboutText2}</span>
+            <span role="note">{t.aboutText}</span>
+            <span role="note">{t.aboutText2}</span>
           </h1>
 
           <div className="mt-20 md:mt-60 pb-10 border-t-2 border-white/10 pt-6">

@@ -20,6 +20,7 @@
 
 @theme {
   --font-sans: 'Lato', 'sans-serif';
+  --default-font-family: 'Lato', 'sans-serif';
   --color-neutral-black: #161616;
 }
 
@@ -98,7 +99,7 @@
       @apply flex flex-col justify-center items-center px-2 w-full md:max-w-[320px];
 
       .avatar {
-        @apply rounded-full overflow-hidden object-cover;
+        @apply rounded-full overflow-hidden object-cover max-w-20 max-h-20;
       }
 
       .name {

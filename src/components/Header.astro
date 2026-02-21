@@ -26,7 +26,7 @@ const NAV_LINKS = [
   <nav class="container">
     <div class="flex justify-between items-center px-2 md:px-4">
       <!-- Logo -->
-      <a href={safeHref(getLocalizedPath(currentLang), Astro.url.pathname) ?? undefined} class="no-underline shrink-0" aria-label="Home">
+      <a href={safeHref(getLocalizedPath(currentLang), Astro.url.pathname) ?? undefined} class="no-underline shrink-0" title="Home">
         <svg class="dark:text-white" width="48" height="48" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 0.909046H1.32834L3.99503 4.99996L6.67166 0.909046H8V9.09087H6.95887V2.8746H6.86911L4.49565 6.36359H3.49441L1.13089 2.8746H1.04113V9.09087H0V0.909046Z" fill="currentColor"/>
           <path d="M4.5056 2.09086V10.2727H3.50435V2.09086H4.5056Z" fill="currentColor"/>
