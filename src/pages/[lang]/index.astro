@@ -20,6 +20,6 @@ const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || 'marynych.ivan@iclo
 const cvUrl = import.meta.env.PUBLIC_CV_FILE_PATH;
 ---
 
-<Layout title={`${t.name} - Portfolio`} lang={lang || DEFAULT_LANGUAGE} metaDescription={t.index.metaDescription}>
+<Layout title={`${t.name} - Portfolio`} lang={lang || DEFAULT_LANGUAGE} metaDescription={t.index.metaDescription} withCrystal={true}>
   <MainPageContent t={t} hasContactForm={!!formspreeEndpoint} contactEmail={contactEmail} formspreeEndpoint={formspreeEndpoint} recaptchaSiteKey={recaptchaSiteKey} cvUrl={cvUrl} />
 </Layout>

@@ -2,12 +2,6 @@
 import { getLocalizedPath } from '../i18n/translations';
 import { safeHref } from '../utils/links';
 
-interface Props {
-  currentLang: string;
-}
-
-const { currentLang } = Astro.props;
-
 const LOCALES = [
   { code: 'en', label: 'EN', ariaLabel: 'Switch to English' },
   { code: 'uk', label: 'UK', ariaLabel: 'Перемкнути на Українську' },

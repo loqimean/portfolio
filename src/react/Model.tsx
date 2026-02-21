@@ -70,7 +70,7 @@ export default function Model(props: { t: any }) {
 
   const cameraRotation = 0.3
 
-  useFrame((state, delta) => {
+  useFrame((_state, _delta) => {
     if (stoneRef.current) {
       stoneRef.current.rotation.y += 0.01 / 2
     }
