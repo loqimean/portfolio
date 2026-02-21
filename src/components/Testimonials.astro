@@ -28,7 +28,7 @@ const avatars = [IrynaYetskaloAvatar, AnnaGuglielmoAvatar, KhrystynaRozhniatovsk
   <div class="cards-container">
     {t.testimonials.items.map((item: any, index: number) => (
     <div class="card">
-      <Picture src={avatars[index]} alt={item.name} width={80} densities={[1, 2]} pictureAttributes={{ class: 'avatar' }} />
+      <Picture src={avatars[index]} alt={item.name} width={80} densities={[1, 2]} loading="lazy" pictureAttributes={{ class: 'avatar' }} />
 
       <p class="name">{item.name}</p>
       <p class="position">{item.description}</p>

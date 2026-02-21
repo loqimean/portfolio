@@ -26,12 +26,12 @@ const { t, hasContactForm = false, contactEmail = '', formspreeEndpoint = '', re
   <HeroSection t={t} client:load />
 
   <!-- About Section -->
-  <AboutSection t={t} client:load >
-    <Picture src={AvatarPhoto} alt="Avatar" width={500} densities={[1, 2]} />
+  <AboutSection t={t} client:visible >
+    <Picture src={AvatarPhoto} alt="Avatar" width={500} densities={[1, 2]} loading="lazy" />
   </AboutSection>
 
   <!-- Skills Section -->
-  <SkillsSection t={t} cvUrl={cvUrl} client:load>
+  <SkillsSection t={t} cvUrl={cvUrl} client:visible>
     <SkillsSetIcon class="mx-auto w-full h-fit" />
   </SkillsSection>
 
@@ -42,7 +42,7 @@ const { t, hasContactForm = false, contactEmail = '', formspreeEndpoint = '', re
 
   {hasContactForm && formspreeEndpoint ? (
     <ContactForm
-      client:load
+      client:visible
       t={t}
       formspreeEndpoint={formspreeEndpoint}
       recaptchaSiteKey={recaptchaSiteKey}

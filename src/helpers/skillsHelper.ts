@@ -1,4 +1,4 @@
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 
 let buttonScale = 1;
 const SCALE_INCREMENT = 0.05;

@@ -1,4 +1,6 @@
-import Scene from './Scene';
+import { lazy, Suspense } from 'react';
+
+const Scene = lazy(() => import('./Scene'));
 
 export const HeroSection = (props: { t: any }) => {
   const { t } = props
@@ -6,7 +8,9 @@ export const HeroSection = (props: { t: any }) => {
   return (
     <section className="min-h-screen flex flex-col bg-accent mx-5 rounded-t-3xl dark:bg-neutral-black h-screen">
       <div className="relative mx-auto h-full container">
-        <Scene t={t} />
+        <Suspense fallback={<div className="h-full -mx-30" />}>
+          <Scene t={t} />
+        </Suspense>
         <div className="flex flex-col gap-2 mt-auto absolute bottom-10 left-5">
           <a href="https://github.com/loqimean" title="GitHub" target="_blank" rel="noopener noreferrer">
             <span className="icon-[jam--github] size-6 md:size-10"></span>

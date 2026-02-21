@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig, passthroughImageService } from 'astro/config';
+import { defineConfig } from 'astro/config';
 import { DEFAULT_LANGUAGE, translations } from './src/i18n/translations';
 
 import tailwindcss from '@tailwindcss/vite';
@@ -16,12 +16,22 @@ export default defineConfig({
     }
   },
 
-  image: {
-    service: passthroughImageService()
-  },
-
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('@react-three') || id.includes('three')) {
+              return 'three';
+            }
+            if (id.includes('gsap')) {
+              return 'gsap';
+            }
+          },
+        },
+      },
+    },
   },
 
   integrations: [
