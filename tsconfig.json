@@ -5,7 +5,10 @@
     "**/*"
   ],
   "exclude": [
-    "dist"
+    "dist",
+    "node_modules",
+    "public",
+    "src/components/GoogleAnalytics.astro"
   ],
   "compilerOptions": {
     "jsx": "react-jsx",
