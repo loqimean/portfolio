@@ -34,7 +34,14 @@ const related  = allPosts
   .slice(0, 3);
 ---
 
-<Layout title={`${title} — Ivan Marynych`} metaDescription={excerpt} prose={false}>
+<Layout
+  title={`${title} | Ivan Marynych`}
+  metaDescription={excerpt}
+  prose={false}
+  ogType="article"
+  {pubDate}
+  {tags}
+>
   <BlogReadingProgress />
 
   <main>

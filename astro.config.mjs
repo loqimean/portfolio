@@ -30,7 +30,6 @@ for (const file of readdirSync(blogDir)) {
 export default defineConfig({
   site: 'https://ivanmarynych.com',
   redirects: {
-    '/en': '/',
     '/en/': '/',
   },
   i18n: {
