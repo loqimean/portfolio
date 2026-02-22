@@ -30,8 +30,7 @@ const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || 'marynych.ivan@iclo
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="/fonts/Lato_Bold.ttf" as="font" type="font/ttf" crossorigin />
     {withCrystal && (
       <link rel="preload" href="/models/crystal.glb" as="fetch" crossorigin />
     )}
