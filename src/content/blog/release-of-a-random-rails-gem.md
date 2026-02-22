@@ -4,7 +4,6 @@ excerpt: "Discover the most efficient way to fetch random records in Rails — f
 category: "Ruby on Rails"
 tags: ["Ruby on Rails", "Backend", "SQL", "Performance"]
 pubDate: 2023-07-15
-readTime: "5 min"
 draft: false
 ---
 ## RandomRails: fast random records for ActiveRecord

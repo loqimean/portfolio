@@ -4,7 +4,6 @@ excerpt: "Learn how to verify the Monobank Acquiring API webhook sign using a Ru
 category: "Ruby"
 tags: ["Ruby", "Backend", "Security"]
 pubDate: 2023-07-10
-readTime: "10 min"
 draft: false
 ---
 ## Introduction

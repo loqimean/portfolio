@@ -4,10 +4,8 @@ excerpt: "Ever had a test fail despite the data looking perfect? When dealing wi
 category: "Ruby on Rails"
 tags: ["Ruby", "Testing", "Debugging", "Elasticsearch"]
 pubDate: 2024-06-24
-readTime: "13 min"
 draft: false
 ---
-
 ## **The Problem**
 
 The story began with a failing spec that, by all accounts, should have been green. The input data and expected output matched perfectly, yet the test remained red. When you're working with Elasticsearch, you have massive datasets and multiple entry points to check, making standard "print debugging" a slow and painful process.
@@ -21,6 +19,7 @@ Since the feature worked perfectly in my development environment, I needed to se
 To investigate the test state manually, follow these steps:
 
 1. **Disable Transactions:** In `spec/rails_helper.rb`, temporarily prevent RSpec from rolling back changes so the data persists for you to see.
+
 ```ruby
 RSpec.configure do |config|
   config.use_transactional_fixtures = false
@@ -28,8 +27,8 @@ end
 
 ```
 
-
 2. **Point to the Test DB:** Update `config/database.yml` to use your test database for the development server.
+
 ```yaml
 development:
   <<: *default
@@ -37,13 +36,12 @@ development:
 
 ```
 
-
 3. **Sync Elasticsearch Indexes:** Ensure your search engine is looking at the test indexes. In my case, I updated `config/initializers/chewy.rb`:
+
 ```ruby
 Chewy.settings = { prefix: ["test", ENV['TEST_ENV_NUMBER']].compact.join('_') }
 
 ```
-
 
 4. **Manual Verification:** Restart your server and navigate to the failing page.
 

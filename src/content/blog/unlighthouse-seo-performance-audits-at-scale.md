@@ -4,10 +4,8 @@ excerpt: "One slow template, one oversized script, one forgotten redirect—and 
 category: "SEO & Performance"
 tags: ["SEO", "Web Performance", "Core Web Vitals", "Lighthouse", "JavaScript", "Tooling"]
 pubDate: 2026-02-22
-readTime: "12 min"
 draft: false
 ---
-
 ## **The Real Performance Problem (It’s Not One Page)**
 
 Most teams treat Lighthouse as a *page-level* tool:

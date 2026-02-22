@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { DEFAULT_LANGUAGE, getTranslations } from '../../i18n/translations';
+import { readingTime } from '../../utils/readingTime';
 
 const t = getTranslations(DEFAULT_LANGUAGE);
 const raw = await getCollection('blog', ({ data }) => !data.draft);
@@ -12,7 +13,7 @@ const posts = raw
     excerpt:  entry.data.excerpt,
     category: entry.data.category,
     tags:     entry.data.tags,
-    readTime: entry.data.readTime,
+    readTime: readingTime(entry.body),
     slug:     `/blog/${entry.slug}`,
     month: entry.data.pubDate.toLocaleString('en-US', { month: 'short' }).toUpperCase(),
     day:   String(entry.data.pubDate.getDate()).padStart(2, '0'),

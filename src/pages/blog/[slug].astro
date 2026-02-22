@@ -5,6 +5,7 @@ import BlogReadingProgress from '../../components/blog/BlogReadingProgress.astro
 import BlogPostHero from '../../components/blog/BlogPostHero.astro';
 import BlogPostToc from '../../components/blog/BlogPostToc.astro';
 import BlogPostRelated from '../../components/blog/BlogPostRelated.astro';
+import { readingTime } from '../../utils/readingTime';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -17,7 +18,8 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
 
-const { title, excerpt, category, tags, pubDate, readTime } = entry.data;
+const { title, excerpt, category, tags, pubDate } = entry.data;
+const readTime = readingTime(entry.body);
 
 const month = pubDate.toLocaleString('en-US', { month: 'short' }).toUpperCase();
 const day   = String(pubDate.getDate()).padStart(2, '0');

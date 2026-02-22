@@ -4,10 +4,8 @@ excerpt: "Rails magic is powerful—until it isn't. Discover why `find_or_create
 category: "Ruby on Rails"
 tags: ["Ruby on Rails", "Validations", "Database", "Error Handling"]
 pubDate: 2024-07-09
-readTime: "11 min"
 draft: false
 ---
-
 ## **The Hidden Trap in Ruby on Rails Associations**
 
 In the Rails ecosystem, we rely heavily on associations and validations to keep our data clean. However, even seasoned developers can get tripped up by how Rails handles "unsaved" instances.
