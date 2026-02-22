@@ -15,6 +15,7 @@ interface Props {
 }
 
 const { title, metaDescription, lang = DEFAULT_LANGUAGE, prose = true, withCrystal = false } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT || '';
 const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || 'marynych.ivan@icloud.com';
 ---
@@ -28,6 +29,7 @@ const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || 'marynych.ivan@iclo
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalURL.href} />
     <title>{title}</title>
 
     <link rel="preload" href="/fonts/Lato_Bold.ttf" as="font" type="font/ttf" crossorigin />
