@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import { DEFAULT_LANGUAGE, translations } from './src/i18n/translations';
 import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
+import rehypeExternalLinks from 'rehype-external-links';
 
 import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
@@ -18,7 +19,10 @@ export default defineConfig({
   },
 
   markdown: {
-    rehypePlugins: [rehypeAccessibleEmojis],
+    rehypePlugins: [
+      [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }],
+      rehypeAccessibleEmojis
+    ],
   },
 
   vite: {
