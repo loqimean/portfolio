@@ -7,7 +7,15 @@ export default {
   aboutText2: "I build robust backends and elegant frontends — crafting digital products that are fast, scalable, and user-centric.",
   aboutText3: "Let's turn complex ideas into fast, scalable web applications. From database to UI — I craft clean code and intuitive experiences with Ruby on Rails at the core.",
   recentProject: "Recent project",
-  openSource: "Open Source",
+  openSource: {
+    title: "Open Source",
+    subtitle: "Projects, Libraries & Contributions",
+    projectsCount: "projects",
+    meta: {
+      title: "Open Source — Ruby on Rails gems, web tools, and more",
+      description: "Open source projects and contributions by Ivan Marynych — Ruby on Rails gems, web tools, and contributions to different projects and libraries.",
+    },
+  },
   projects: "Projects",
   contact: "Contact me",
   contactTitle: "Let's work togeeeether",

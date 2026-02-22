@@ -7,7 +7,15 @@ export default {
   aboutText2: "Construyo backends robustos y frontends elegantes — creando productos digitales fast, escalables y centrados en el usuario.",
   aboutText3: "Transformo ideas complejas en aplicaciones web rápidas y escalables. Desde la base de datos hasta la UI — creo código limpio y experiencias intuitivas con Ruby on Rails en el núcleo.",
   recentProject: "Proyecto reciente",
-  openSource: "Open Source",
+  openSource: {
+    title: "Código Abierto",
+    subtitle: "Proyectos, Librerías y Contribuciones",
+    projectsCount: "proyectos",
+    meta: {
+      title: "Código Abierto — Gems de Ruby on Rails, herramientas web y más",
+      description: "Proyectos y contribuciones de Ivan Marynych — Gems de Ruby on Rails, herramientas web y contribuciones a diferentes proyectos y bibliotecas.",
+    },
+  },
   projects: "Proyectos",
   contact: "Contacto",
   blog: {

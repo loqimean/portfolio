@@ -64,8 +64,8 @@ export const HeroSection = (props: { t: any }) => {
             <span className="uppercase text-sm md:text-xl">{t.recentProject}</span>
           </a>
           <span className="text-xl mx-2">-</span>
-          <a href="https://github.com/loqimean" title="Open Source" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline">
-            <span className="uppercase text-sm md:text-xl">{t.openSource}</span>
+          <a href="/opensource" title={t.openSource.title} target="_blank" rel="noopener noreferrer" className="no-underline hover:underline">
+            <span className="uppercase text-sm md:text-xl">{t.openSource.title}</span>
           </a>
         </div>
       </div>

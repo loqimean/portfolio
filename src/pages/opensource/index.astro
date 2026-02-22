@@ -1,0 +1,39 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { OPENSOURCE_PROJECTS } from '../../data/opensourceProjects';
+import { getTranslations, DEFAULT_LANGUAGE } from '../../i18n/translations';
+import OpenSourcePage from '../../react/OpenSourcePage';
+
+const t = getTranslations(DEFAULT_LANGUAGE);
+const count = OPENSOURCE_PROJECTS.length;
+---
+
+<Layout
+  title={`${t.openSource.meta.title} | ${t.name}`}
+  metaDescription={t.openSource.meta.description}
+  prose={false}
+>
+  <main>
+
+    <!-- ── Hero ──────────────────────────────────────────── -->
+    <section class="os-hero">
+      <div class="os-hero-inner">
+        <div class="os-hero-top">
+          <small>{t.openSource.subtitle}</small>
+          <span class="os-badge">GitHub</span>
+        </div>
+        <h1 class="os-title">Open<br />Source</h1>
+        <div class="os-hero-foot">
+          <span class="os-count">{count} {t.openSource.projectsCount}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Dynamic content (React island) ───────────────── -->
+    <section class="os-content">
+      <div class="os-content-inner">
+        <OpenSourcePage projects={OPENSOURCE_PROJECTS} client:load />
+      </div>
+    </section>
+  </main>
+</Layout>
