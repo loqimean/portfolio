@@ -357,7 +357,7 @@
 
 @layer components {
   .blog-body {
-    @apply mx-5 bg-white dark:bg-[#141414] px-10 pb-20 max-sm:px-5 max-sm:pb-14 overflow-x-hidden;
+    @apply mx-5 bg-white dark:bg-[#141414] px-10 pb-20 max-sm:px-5 max-sm:pb-14 overflow-x-clip;
   }
 
   .blog-body-wrap {
