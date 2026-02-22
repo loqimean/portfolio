@@ -17,27 +17,30 @@
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
     "@tailwindcss/typography": "^0.5.19",
-    "@tailwindcss/vite": "^4.1.16",
-    "@types/react": "^19.2.9",
+    "@tailwindcss/vite": "^4.2.0",
+    "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "astro": "^5.17.3",
-    "daisyui": "^5.5.5",
+    "daisyui": "^5.5.19",
     "gsap": "^3.14.2",
     "leva": "^0.10.1",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "sharp": "^0.34.5",
-    "tailwindcss": "^4.1.16",
+    "tailwindcss": "^4.2.0",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.431",
+    "@iconify/json": "^2.2.441",
     "@iconify/tailwind4": "^1.2.1",
     "rehype-accessible-emojis": "^0.3.2"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
       "sharp"
-    ]
+    ],
+    "overrides": {
+      "lodash@>=4.0.0 <=4.17.22": ">=4.17.23"
+    }
   }
 }
