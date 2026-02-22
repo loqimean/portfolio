@@ -6,10 +6,12 @@ import rehypeExternalLinks from 'rehype-external-links';
 
 import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
+import sitemap from '@astrojs/sitemap';
 
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://ivanmarynych.com',
   i18n: {
     defaultLocale: DEFAULT_LANGUAGE,
     locales: Object.keys(translations),
@@ -44,6 +46,7 @@ export default defineConfig({
   },
 
   integrations: [
+    sitemap(),
     react()
   ]
 });

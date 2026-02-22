@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ivanmarynych.com/sitemap-index.xml
