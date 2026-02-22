@@ -136,7 +136,7 @@
       @apply flex flex-col lg:flex-row justify-between mx-auto px-6 py-12 pt-3 pb-0 md:pb-12 xl:pt-32 gap-20;
 
       .header {
-        @apply relative w-full max-w-sm sm:max-w-md h-fit;
+        @apply relative w-full max-w-sm sm:max-w-md h-fit mt-0;
 
         h2 {
           @apply text-white uppercase font-medium text-5xl sm:text-7xl xl:text-8xl leading-tight m-0!;
@@ -431,7 +431,7 @@
 
   /* Code blocks — terminal window chrome */
   .bps-article pre {
-    @apply bg-[#0f0f0f]! pt-10 px-6 pb-5 my-7 max-w-full overflow-x-auto box-border
+    @apply bg-[#0f0f0f]! pt-10 px-6 pb-0 my-7 max-w-full overflow-x-auto box-border
            text-[0.8rem]! leading-[1.7] relative rounded-lg! border border-[#222];
     scrollbar-width: thin;
     scrollbar-color: var(--color-accent) transparent;
