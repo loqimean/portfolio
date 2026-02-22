@@ -7,7 +7,15 @@ export default {
   aboutText2: "Я будую надійний бекенд та елегантний фронтенд — створюючи цифрові продукти, які є швидкими, масштабованими та орієнтованими на користувача.",
   aboutText3: "Перетворюю складні ідеї на швидкі, масштабовані веб-додатки. Від бази даних до інтерфейсу — я створюю чистий код та інтуїтивний досвід з Ruby on Rails в основі.",
   recentProject: "Недавній проєкт",
-  openSource: "Open Source",
+  openSource: {
+    title: "Open Source",
+    subtitle: "Проєкти, Бібліотеки та Внески",
+    projectsCount: "проєктів",
+    meta: {
+      title: "Відкритий код — Ruby on Rails gems, web tools, and more",
+      description: "Відкриті проекти та внески Івана Маринича — Ruby on Rails gems, web tools, and contributions to different projects and libraries.",
+    },
+  },
   projects: "Проєкти",
   contact: "Контакти",
   blog: {

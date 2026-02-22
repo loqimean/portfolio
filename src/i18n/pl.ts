@@ -7,7 +7,15 @@ export default {
   aboutText2: "Buduję solidne backendy i eleganckie frontendy — tworząc produkty cyfrowe, które są szybkie, skalowalne i zorientowane na użytkownika.",
   aboutText3: "Zamieniam złożone pomysły na szybkie, skalowalne aplikacje webowe. Od bazy danych aż po interfejs — tworzę czysty kod i intuicyjne doświadczenia z Ruby on Rails w centrum.",
   recentProject: "Ostatni projekt",
-  openSource: "Open Source",
+  openSource: {
+    title: "Open Source",
+    subtitle: "Projekty, Biblioteki i Wkłady",
+    projectsCount: "projektów",
+    meta: {
+      title: "Open Source — Gems Ruby on Rails, narzędzia webowe i więcej",
+      description: "Projekty i wkłady otwartego kodu przez Ivana Marynycha — Gems Ruby on Rails, narzędzia webowe i wkłady do różnych projektów i bibliotek.",
+    },
+  },
   projects: "Projekty",
   contact: "Kontakt",
   blog: {

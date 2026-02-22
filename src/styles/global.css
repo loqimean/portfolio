@@ -218,6 +218,118 @@
   @apply w-full h-full absolute top-0 left-0 opacity-20 pointer-events-none;
 }
 
+/* ── Open Source page ───────────────────────────────────────────────────── */
+
+@layer components {
+
+  /* ── Hero ──────────────────────────────────────────────── */
+  .os-hero {
+    @apply mx-5 rounded-t-3xl bg-accent dark:bg-neutral-black pt-32 px-10 pb-12 mt-18!;
+  }
+
+  .os-hero-inner { @apply max-w-[960px] mx-auto; }
+  .os-hero-top   { @apply flex items-center justify-between mb-5 font-bold; }
+
+  .os-hero small {
+    @apply text-[0.625rem] uppercase tracking-[0.35em] text-white/45 font-sans;
+  }
+
+  .os-badge {
+    @apply text-[0.625rem] uppercase tracking-[0.25em] text-white/60 border border-white/30
+           px-3 py-[0.3rem] font-sans
+           dark:text-accent dark:border-accent/40;
+  }
+
+  .os-title {
+    @apply text-[clamp(4rem,12vw,9rem)] font-light uppercase text-white
+           mb-8 tracking-[0.08em] leading-[0.88] font-sans;
+  }
+
+  .os-hero-foot {
+    @apply flex items-center gap-6 flex-wrap font-bold pt-6 border-t border-white/20;
+  }
+
+  .os-count {
+    @apply text-[0.625rem] uppercase tracking-[0.3em] text-white/45 font-sans;
+  }
+
+  /* ── Content wrapper ───────────────────────────────────── */
+  .os-content       { @apply mx-5 rounded-b-2xl bg-white dark:bg-[#141414] px-6 md:px-10 pb-16; }
+  .os-content-inner { @apply max-w-[960px] mx-auto; }
+
+  /* ── Shared ────────────────────────────────────────────── */
+  .os-lang-dot { @apply inline-block size-[8px] rounded-full shrink-0; }
+  .os-skeleton { @apply animate-pulse bg-[#ebebeb] dark:bg-[#252525] rounded; }
+
+  /* ── Editorial layout ──────────────────────────────────── */
+  .os-s2-item {
+    @apply border-t border-[#e8e8e8] dark:border-[#2a2a2a];
+
+    &:last-child { @apply border-b border-[#e8e8e8] dark:border-[#2a2a2a]; }
+  }
+
+  .os-s2-link {
+    @apply grid grid-cols-[90px_1fr_auto] items-start gap-8 py-8
+           no-underline! text-inherit
+           max-sm:grid-cols-[70px_1fr] max-sm:gap-5;
+  }
+
+  .os-s2-stats-col   { @apply text-right pt-[0.2rem] font-sans; }
+
+  .os-s2-stars-label {
+    @apply block text-[0.52rem] font-black uppercase tracking-[0.2em] text-accent mb-[0.1rem];
+  }
+
+  .os-s2-stars-big {
+    @apply block text-[2.6rem] font-black text-[#111] dark:text-white
+           leading-[0.9] tracking-[-0.02em];
+  }
+
+  .os-s2-lang {
+    @apply block text-[0.52rem] text-[#ccc] dark:text-[#3a3a3a] tracking-widest mt-[0.3rem];
+  }
+
+  .os-s2-lang-chip {
+    @apply flex items-center gap-1 mt-3 text-[0.52rem] text-[#aaa] dark:text-[#444] justify-self-end;
+  }
+
+  /* ── Type badge ────────────────────────────────────────── */
+  .os-s2-type-badge {
+    @apply inline-block text-[0.48rem] uppercase tracking-[0.28em] font-black
+           px-[0.55rem] py-[0.22rem] mb-[0.6rem] border font-sans;
+  }
+
+  .os-s2-type-badge--library {
+    @apply text-accent border-accent/40 bg-accent/5;
+  }
+
+  .os-s2-type-badge--project {
+    @apply text-[#111] dark:text-white border-[#ccc] dark:border-[#3a3a3a]
+           bg-[#f5f5f5] dark:bg-[#1e1e1e];
+  }
+
+  .os-s2-type-badge--contributed-to {
+    @apply text-[#999] dark:text-[#555] border-[#e0e0e0] dark:border-[#2a2a2a] bg-transparent;
+  }
+
+  .os-s2-content { @apply min-w-0 font-sans; }
+
+  .os-s2-name {
+    @apply text-[clamp(1.1rem,2.3vw,1.5rem)] font-black text-[#111] dark:text-white
+           leading-[1.2] mb-[0.65rem] tracking-[-0.01em] transition-colors duration-200;
+  }
+
+  .os-s2-desc  { @apply text-sm text-[#777] dark:text-[#555] leading-[1.75]; }
+
+  .os-s2-arrow {
+    @apply text-[1.2rem] text-accent opacity-0 pt-1 self-center
+           transition-[opacity,transform] duration-200 max-sm:hidden;
+  }
+
+  .os-s2-link:hover .os-s2-name  { @apply text-accent; }
+  .os-s2-link:hover .os-s2-arrow { @apply opacity-100 translate-x-1; }
+}
+
 /* ── Blog index page ─────────────────────────────────────────────────────── */
 
 @layer components {
