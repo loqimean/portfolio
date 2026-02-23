@@ -480,11 +480,11 @@
   }
 
   .blog-footer-label {
-    @apply text-[0.52rem] uppercase tracking-[0.3em] text-[#ccc] dark:text-[#444] font-sans mr-0.5;
+    @apply text-[0.52rem] uppercase tracking-[0.3em] text-gray-400 dark:text-[#444] font-sans mr-0.5;
   }
 
   .blog-footer-tag {
-    @apply text-[0.58rem] uppercase tracking-[0.15em] text-[#999] border border-[#e0e0e0]
+    @apply text-[0.58rem] uppercase tracking-[0.15em] text-gray-600 border border-[#e0e0e0]
            px-2.5 py-1 font-sans cursor-default
            transition-[border-color,color] duration-150
            hover:border-accent hover:text-accent
@@ -618,13 +618,13 @@
   .bps-nav { @apply flex items-center justify-between mb-9 max-sm:mb-6; }
 
   .bps-back {
-    @apply text-[0.6rem] uppercase tracking-[0.25em] text-white/55
+    @apply text-[0.6rem] uppercase tracking-[0.25em] text-white
            no-underline font-sans transition-colors duration-200
            hover:text-white hover:no-underline;
   }
 
   .bps-badge {
-    @apply text-[0.58rem] uppercase tracking-[0.25em] text-white/65
+    @apply text-[0.58rem] uppercase tracking-[0.25em] text-white
            border border-white/30 px-3 py-1 font-sans
            dark:text-accent dark:border-accent/40;
   }
@@ -649,7 +649,7 @@
 
   .bps-mon {
     @apply block text-[0.55rem] font-black uppercase tracking-[0.2em]
-           text-white/45 dark:text-[#555]
+           text-white dark:text-[#555]
            max-sm:inline max-sm:text-[0.58rem];
   }
 
@@ -660,7 +660,7 @@
   }
 
   .bps-yr {
-    @apply block text-[0.5rem] text-white/45 tracking-widest
+    @apply block text-[0.5rem] text-white tracking-widest
            mt-1 dark:text-[#3a3a3a]
            max-sm:inline max-sm:mt-0;
   }
@@ -668,7 +668,7 @@
   .bps-meta-right { @apply flex flex-col gap-2; }
 
   .bps-rt {
-    @apply text-[0.58rem] uppercase tracking-[0.22em] text-white/45
+    @apply text-[0.58rem] uppercase tracking-[0.22em] text-white
            font-sans inline-flex items-center gap-2 dark:text-[#555];
   }
   .bps-rt::before {
@@ -676,8 +676,8 @@
   }
   [data-theme="dark"] .bps-rt::before { @apply bg-[#333]; }
 
-  .bps-tags    { @apply flex flex-wrap; }
-  .bps-tag     { @apply text-[0.52rem] uppercase tracking-[0.15em] text-white/45 font-sans dark:text-[#3a3a3a]; }
+  .bps-tags    { @apply flex flex-wrap font-light; }
+  .bps-tag     { @apply text-[0.52rem] uppercase tracking-[0.15em] text-white font-sans dark:text-[#3a3a3a]; }
   .bps-tag-sep { @apply opacity-35 mx-[0.1em]; }
 
   /* BlogPostToc */
@@ -685,12 +685,12 @@
 
   .bps-toc-label {
     @apply block text-[0.5rem] uppercase tracking-[0.35em]
-           text-[#ccc] dark:text-[#444]
+           text-gray-600 dark:text-[#444]
            mb-3.5 pb-2.5 border-b border-[#efefef] dark:border-[#222];
   }
 
   .bps-toc-link {
-    @apply block text-[0.68rem] text-[#ccc]! dark:text-[#3a3a3a]! no-underline!
+    @apply block text-[0.68rem] text-gray-400! dark:text-[#3a3a3a]! no-underline!
            leading-[1.45] py-1.5 pl-3
            border-l border-[#efefef] dark:border-l-[#222] font-sans
            transition-[color,border-color] duration-150
@@ -721,7 +721,7 @@
            border-b border-[#e0e0e0] dark:border-[#222];
   }
 
-  .bps-more-label { @apply text-[0.55rem] uppercase tracking-[0.3em] text-[#bbb] font-sans; }
+  .bps-more-label { @apply text-[0.55rem] uppercase tracking-[0.3em] text-gray-400 font-sans; }
 
   .bps-more-all {
     @apply text-[0.6rem] uppercase tracking-[0.2em] text-accent! no-underline! font-sans
@@ -751,7 +751,7 @@
 
   .bps-more-foot {
     @apply flex justify-between text-[0.55rem] uppercase tracking-[0.12em]
-           text-[#bbb] dark:text-[#444] font-sans mt-auto pt-2.5;
+           text-gray-400 dark:text-[#444] font-sans mt-auto pt-2.5;
   }
 
   .bps-more-back-row {
