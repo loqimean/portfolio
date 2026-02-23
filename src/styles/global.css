@@ -450,7 +450,7 @@
   }
 
   .bl-excerpt {
-    @apply text-sm text-[#777] dark:text-[#555] leading-[1.75] mb-3.5 font-sans;
+    @apply text-sm text-[#777] dark:text-[#555] line-clamp-3 md:line-clamp-none leading-[1.75] mb-3.5 font-sans;
   }
 
   .bl-read {
