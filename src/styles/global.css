@@ -319,7 +319,7 @@
            leading-[1.2] mb-2.5 tracking-[-0.01em] transition-colors duration-200;
   }
 
-  .os-s2-desc  { @apply text-sm text-[#777] line-clamp-3 md:line-clamp-none dark:text-[#555] leading-[1.75]; }
+  .os-s2-desc  { @apply text-sm text-neutral-500 line-clamp-3 md:line-clamp-none dark:text-[#555] leading-[1.75]; }
 
   .os-s2-arrow {
     @apply text-[1.2rem] text-accent opacity-0 pt-1 self-center
@@ -450,7 +450,7 @@
   }
 
   .bl-excerpt {
-    @apply text-sm text-[#777] dark:text-[#555] line-clamp-3 md:line-clamp-none leading-[1.75] mb-3.5 font-sans;
+    @apply text-sm text-neutral-500 dark:text-[#555] line-clamp-3 md:line-clamp-none leading-[1.75] mb-3.5 font-sans;
   }
 
   .bl-read {
