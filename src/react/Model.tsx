@@ -88,7 +88,7 @@ export default function Model(props: { t: any }) {
       <Text
         ref={textRef}
         rotation={[0, 0, 0.3]}
-        position={[-8, -2.5, -2]}
+        position={[-8.03, -2.5, -2]}
         fontSize={2.5}
         anchorX="left"
         font="/fonts/Lato_Bold.ttf">
