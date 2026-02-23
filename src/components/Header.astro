@@ -84,6 +84,7 @@ const NAV_LINKS = [
       id="mobile-menu"
       class="md:hidden overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out"
       aria-hidden="true"
+      inert
     >
       <div class="flex flex-col gap-1 pt-4 pb-2 px-2 uppercase text-sm font-medium">
         {NAV_LINKS.map(({ label, href }) => <NavLink {label} {href} class="py-3 px-4 rounded-xl hover:bg-(--card-bg) transition-colors" />)}
@@ -97,22 +98,30 @@ const NAV_LINKS = [
   const menu = document.getElementById('mobile-menu');
 
   if (toggle && menu) {
+    const closeMenu = () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('aria-hidden', 'true');
+      menu.inert = true;
+      menu.style.maxHeight = '0';
+      toggle.classList.remove('menu-open');
+    };
+
     toggle.addEventListener('click', () => {
       const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', String(!isOpen));
-      menu.setAttribute('aria-hidden', String(isOpen));
-      menu.style.maxHeight = isOpen ? '0' : `${menu.scrollHeight}px`;
-      toggle.classList.toggle('menu-open', !isOpen);
+      if (isOpen) {
+        closeMenu();
+      } else {
+        toggle.setAttribute('aria-expanded', 'true');
+        menu.setAttribute('aria-hidden', 'false');
+        menu.inert = false;
+        menu.style.maxHeight = `${menu.scrollHeight}px`;
+        toggle.classList.add('menu-open');
+      }
     });
 
     // Close menu on link click
     menu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        toggle.setAttribute('aria-expanded', 'false');
-        menu.setAttribute('aria-hidden', 'true');
-        menu.style.maxHeight = '0';
-        toggle.classList.remove('menu-open');
-      });
+      link.addEventListener('click', closeMenu);
     });
   }
 </script>
