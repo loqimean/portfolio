@@ -221,14 +221,14 @@
   }
 
   .os-hero-inner { @apply max-w-[960px] mx-auto; }
-  .os-hero-top   { @apply flex items-center justify-between mb-5 font-bold; }
+  .os-hero-top   { @apply flex items-center justify-between mb-5 font-light; }
 
   .os-hero small {
-    @apply text-[0.625rem] uppercase tracking-[0.35em] text-white/45 font-sans;
+    @apply text-[0.625rem] uppercase tracking-[0.35em] text-white font-sans;
   }
 
   .os-badge {
-    @apply text-[0.625rem] uppercase tracking-[0.25em] text-white/60 border border-white/30
+    @apply text-[0.625rem] uppercase tracking-[0.25em] text-white border border-white/30
            px-3 py-1 font-sans
            dark:text-accent dark:border-accent/40;
   }
@@ -243,7 +243,7 @@
   }
 
   .os-count {
-    @apply text-[0.625rem] uppercase tracking-[0.3em] text-white/45 font-sans;
+    @apply text-[0.625rem] uppercase tracking-[0.3em] text-white font-medium font-sans;
   }
 
   /* ── Content wrapper ───────────────────────────────────── */
@@ -279,11 +279,11 @@
   }
 
   .os-s2-lang {
-    @apply block text-[0.52rem] text-[#ccc] dark:text-[#3a3a3a] tracking-widest mt-1;
+    @apply block text-[0.52rem] text-black dark:text-[#3a3a3a] tracking-widest mt-1;
   }
 
   .os-s2-lang-chip {
-    @apply flex items-center gap-1 mt-3 text-[0.52rem] text-[#aaa] dark:text-[#444] justify-self-end;
+    @apply flex items-center gap-1 mt-3 text-[0.52rem] text-gray-400 dark:text-[#444] justify-self-end;
   }
 
   /* ── Type badge ────────────────────────────────────────── */
@@ -302,7 +302,7 @@
   }
 
   .os-s2-type-badge--contributed-to {
-    @apply text-[#999] dark:text-[#555] border-[#e0e0e0] dark:border-[#2a2a2a] bg-transparent;
+    @apply text-neutral-500 dark:text-[#555] border-[#e0e0e0] dark:border-[#2a2a2a] bg-transparent;
   }
 
   .os-s2-content { @apply min-w-0 font-sans; }
@@ -336,11 +336,11 @@
   }
 
   .bl-hero-top {
-    @apply flex items-center justify-between mb-5 font-bold;
+    @apply flex items-center justify-between mb-5 font-light;
   }
 
   .bl-hero small {
-    @apply text-[0.625rem] font-light uppercase tracking-[0.35em] text-white font-sans;
+    @apply text-[0.625rem] uppercase tracking-[0.35em] text-white font-sans;
   }
 
   .bl-badge {
