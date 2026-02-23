@@ -1,11 +1,4 @@
-@font-face {
-  font-family: 'Lato';
-  src: url('/fonts/Lato_Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
+@import "./fonts.css";
 @import "tailwindcss";
 
 @source "./src/react/**/*.tsx";
@@ -347,11 +340,11 @@
   }
 
   .bl-hero small {
-    @apply text-[0.625rem] uppercase tracking-[0.35em] text-white/45 font-sans;
+    @apply text-[0.625rem] font-light uppercase tracking-[0.35em] text-white font-sans;
   }
 
   .bl-badge {
-    @apply text-[0.625rem] uppercase tracking-[0.25em] text-white/60 border border-white/30
+    @apply text-[0.625rem] uppercase tracking-[0.25em] text-white font-light border border-white/30
            px-3 py-1 font-sans
            dark:text-accent dark:border-accent/40;
   }
@@ -366,7 +359,7 @@
   }
 
   .bl-count {
-    @apply text-[0.625rem] uppercase tracking-[0.3em] text-white/45 font-sans;
+    @apply text-[0.625rem] uppercase tracking-[0.3em] text-white font-medium font-sans;
   }
 
   .bl-cats {
@@ -374,7 +367,7 @@
   }
 
   .bl-cat-pill {
-    @apply text-[0.55rem] uppercase tracking-[0.15em] text-white/45 font-sans;
+    @apply text-[0.55rem] uppercase tracking-[0.15em] text-white font-light font-sans;
   }
 
   .bl-cat-pill + .bl-cat-pill::before {
@@ -420,7 +413,7 @@
 
   .bl-mon {
     @apply block text-[0.6rem] font-black uppercase tracking-[0.2em]
-           text-[#aaa] dark:text-[#555] mb-0.5;
+           text-[#767676] dark:text-[#555] mb-0.5;
   }
 
   .bl-day {
@@ -429,7 +422,7 @@
   }
 
   .bl-yr {
-    @apply block text-[0.55rem] text-[#ccc] dark:text-[#3a3a3a]
+    @apply block text-[0.55rem] text-[#767676] dark:text-[#3a3a3a]
            tracking-widest mt-1;
   }
 
@@ -455,7 +448,7 @@
 
   .bl-read {
     @apply text-[0.58rem] uppercase tracking-[0.22em]
-           text-[#bbb] dark:text-[#3a3a3a]
+           text-[#767676] dark:text-[#3a3a3a]
            inline-flex items-center gap-2.5 font-sans font-bold;
   }
 

@@ -75,7 +75,16 @@ const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || 'marynych.ivan@iclo
     {ogImageURL && <meta name="twitter:image" content={ogImageURL} />}
     {ogImageURL && <meta name="twitter:image:alt" content={title} />}
 
-    <link rel="preload" href="/fonts/Lato_Bold.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/Lato-Thin.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/Lato-ThinItalic.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/Lato-Light.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/Lato-LightItalic.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/Lato-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/Lato-Italic.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/Lato-Bold.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/Lato-BoldItalic.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/Lato-Black.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/Lato-BlackItalic.ttf" as="font" type="font/ttf" crossorigin />
     {withCrystal && (
       <link rel="preload" href="/models/crystal.glb" as="fetch" crossorigin />
     )}

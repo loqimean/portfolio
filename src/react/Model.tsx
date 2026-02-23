@@ -91,7 +91,7 @@ export default function Model(props: { t: any }) {
         position={[-8.03, -2.5, -2]}
         fontSize={2.5}
         anchorX="left"
-        font="/fonts/Lato_Bold.ttf">
+        font="/fonts/Lato-Bold.ttf">
           {`${t.name.toLocaleUpperCase()} `.repeat(100)}
       </Text>
 
