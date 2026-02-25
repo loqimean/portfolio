@@ -1,5 +1,5 @@
 export default {
-  name: "Ivan   Marynych",
+  name: "Ivan Marynych",
   darkmood: "Darkmood",
   tagline: "Full Stack Developer & Designer",
   about: "About Me",

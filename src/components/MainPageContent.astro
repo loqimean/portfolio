@@ -3,7 +3,8 @@ import SkillsSetIcon from '../assets/icons/skills-set.svg';
 import { Picture } from 'astro:assets';
 import AvatarPhoto from '../assets/images/avatar.png';
 import { SkillsSection } from '../react/skillsSection';
-import { HeroSection } from '../react/heroSection';
+import { HeroSectionDesktop } from '../react/heroSection';
+import { HeroSectionMobile } from '../react/heroSectionMobile';
 import { AboutSection } from '../react/aboutSection';
 import { ContactForm } from '../react/ContactForm';
 import Testimonials from '../components/Testimonials.astro';
@@ -23,7 +24,12 @@ const { t, hasContactForm = false, contactEmail = '', formspreeEndpoint = '', re
 <main class="pt-16 overflow-hidden">
 <!-- <main class="pt-20"> -->
   <!-- Hero Section -->
-  <HeroSection t={t} client:idle />
+  <div class="hero-mobile-only">
+    <HeroSectionMobile t={t} client:media="(max-width: 767px)" />
+  </div>
+  <div class="hero-desktop-only">
+    <HeroSectionDesktop t={t} client:media="(min-width: 768px)" />
+  </div>
 
   <!-- About Section -->
   <AboutSection t={t} client:visible >
@@ -64,3 +70,23 @@ const { t, hasContactForm = false, contactEmail = '', formspreeEndpoint = '', re
     </div>
   )}
 </main>
+
+<style>
+  .hero-mobile-only {
+    display: block;
+  }
+
+  .hero-desktop-only {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .hero-mobile-only {
+      display: none;
+    }
+
+    .hero-desktop-only {
+      display: block;
+    }
+  }
+</style>
