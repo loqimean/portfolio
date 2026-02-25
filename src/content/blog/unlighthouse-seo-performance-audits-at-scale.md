@@ -158,3 +158,5 @@ If you’re serious about SEO in 2026, performance can’t be a one-off audit. I
 Unlighthouse is the tool I’d pick when the challenge isn’t “run Lighthouse once,” but **understand performance across an entire site, spot the patterns, and prioritize fixes that move revenue**.
 
 If you want a single next step: run one scan, group findings by page type, and ship one fix that improves the experience across hundreds of URLs. That’s how performance becomes marketing.
+
+If you need a master SEO check for your site, [contact me here](/#contact-section) and I can help you prioritize the highest-impact fixes first.
