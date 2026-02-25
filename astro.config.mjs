@@ -53,10 +53,25 @@ export default defineConfig({
       rollupOptions: {
         output: {
           manualChunks(id) {
-            if (id.includes('@react-three') || id.includes('three')) {
-              return 'three';
+            const normalizedId = id.replace(/\\/g, '/');
+
+            if (
+              normalizedId.includes('/node_modules/react/') ||
+              normalizedId.includes('/node_modules/react-dom/') ||
+              normalizedId.includes('/node_modules/scheduler/')
+            ) {
+              return 'react-vendor';
             }
-            if (id.includes('gsap')) {
+
+            if (normalizedId.includes('/node_modules/three/')) {
+              return 'three-core';
+            }
+
+            if (normalizedId.includes('/node_modules/@react-three/')) {
+              return 'react-three';
+            }
+
+            if (normalizedId.includes('/node_modules/gsap/')) {
               return 'gsap';
             }
           },
