@@ -3,46 +3,54 @@ import { gsap } from 'gsap';
 let buttonScale = 1;
 const SCALE_INCREMENT = 0.05;
 const DEFAULT_BUTTON_SCALE = 1;
+const MAX_BUTTON_SCALE = 1.45;
+let downloadCvButton: HTMLButtonElement | null = null;
+
+const setDownloadCvButton = (button: HTMLButtonElement | null) => {
+  downloadCvButton = button;
+};
 
 const triggerPulseButton = () => {
-  const button = document.getElementById("download-cv-button");
+  const button = downloadCvButton;
 
-  if (!button) {
-    console.error("Download CV button not found");
-    return;
-  }
+  if (!button) return;
 
-  // Trigger shadow pulse animation
-  button.style.animation = 'none';
-  button.offsetHeight; // force repaint
-  button.style.animation = 'shadow-pulse 0.8s 1';
+  // Keep this as a compositor animation to avoid forced reflow.
+  gsap.fromTo(button, {
+    boxShadow: "0 0 0 0 var(--shadow-pulse-start-color)"
+  }, {
+    boxShadow: "0 0 7px 25px var(--shadow-pulse-end-color)",
+    duration: 0.8,
+    ease: "power1.out",
+    overwrite: "auto"
+  });
 
-  // Incrementally scale up the button (add to current scale)
-  buttonScale += SCALE_INCREMENT;
+  buttonScale = Math.min(buttonScale + SCALE_INCREMENT, MAX_BUTTON_SCALE);
 
   gsap.to(button, {
     scale: buttonScale,
     duration: 0.6,
-    ease: "power2.out"
+    ease: "power2.out",
+    overwrite: "auto"
   });
 }
 
 const resetButtonScale = () => {
-  const button = document.getElementById("download-cv-button");
+  const button = downloadCvButton;
 
-  if (!button) {
-    return;
-  }
+  if (!button) return;
 
-  // Scale back to normal
   buttonScale = DEFAULT_BUTTON_SCALE;
 
   gsap.to(button, {
     scale: buttonScale,
     duration: 0.3,
-    ease: "power2.out"
+    ease: "power2.out",
+    overwrite: "auto"
   });
 }
+
+const isButtonScaled = () => buttonScale > DEFAULT_BUTTON_SCALE;
 
 const animateSkillsSetIcon = (skillName: string, start: string, end: string, markers: boolean = false) => {
   gsap.to(`#${skillName}-icon`, {
@@ -53,7 +61,9 @@ const animateSkillsSetIcon = (skillName: string, start: string, end: string, mar
       markers: markers,
       start: start,
       end: end,
-      scrub: true
+      scrub: 0.2,
+      invalidateOnRefresh: true,
+      fastScrollEnd: true
     },
     motionPath: {
       path: `#${skillName}-path`,
@@ -66,4 +76,4 @@ const animateSkillsSetIcon = (skillName: string, start: string, end: string, mar
   })
 }
 
-export { animateSkillsSetIcon, resetButtonScale };
+export { animateSkillsSetIcon, isButtonScaled, resetButtonScale, setDownloadCvButton };

@@ -69,6 +69,8 @@
 
   #download-cv-button {
     @apply btn dark:bg-slate-100 shadow-none btn-neutral dark:text-black dark:hover:bg-slate-200 flex items-center gap-2;
+    will-change: transform, box-shadow;
+    transform: translateZ(0);
   }
 
   section#about-me {

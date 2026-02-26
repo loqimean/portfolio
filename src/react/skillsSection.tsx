@@ -1,19 +1,39 @@
 import { gsap } from 'gsap';
-import { MotionPathHelper } from 'gsap/MotionPathHelper';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { useGSAP } from '@gsap/react';
 import skillsLines from '../images/skills-lines.svg';
-import { useRef, useEffect } from 'react';
-import { animateSkillsSetIcon, resetButtonScale } from '../helpers/skillsHelper';
+import { useRef } from 'react';
+import { animateSkillsSetIcon, isButtonScaled, resetButtonScale, setDownloadCvButton } from '../helpers/skillsHelper';
 
-gsap.registerPlugin(useGSAP, MotionPathHelper, ScrollTrigger, MotionPathPlugin);
+gsap.registerPlugin(useGSAP, ScrollTrigger, MotionPathPlugin);
+
+const iconAnimations: Array<{ skillName: string; start: string; end: string }> = [
+  { skillName: "astro", start: "top 45%", end: "top 10%" },
+  { skillName: "redis", start: "top 47%", end: "top 0%" },
+  { skillName: "docker", start: "top 50%", end: "top 30%" },
+  { skillName: "github", start: "top 40%", end: "top 20%" },
+  { skillName: "arduino", start: "top 60%", end: "top 30%" },
+  { skillName: "google-cloud", start: "top 40%", end: "top 20%" },
+  { skillName: "rails", start: "top 40%", end: "top 10%" },
+  { skillName: "js", start: "top 50%", end: "top 20%" },
+  { skillName: "css", start: "top 50%", end: "top 20%" },
+  { skillName: "ruby", start: "top 50%", end: "top 20%" },
+  { skillName: "mjml", start: "top 50%", end: "top 20%" },
+  { skillName: "elasticsearch", start: "top 80%", end: "top 40%" },
+  { skillName: "bash", start: "top 70%", end: "top 40%" },
+  { skillName: "react", start: "top 50%", end: "top 20%" },
+  { skillName: "mysql", start: "top 30%", end: "top 0%" },
+  { skillName: "aws", start: "top 30%", end: "top 0%" },
+  { skillName: "html", start: "top 30%", end: "top 0%" },
+  { skillName: "capistrano", start: "top 60%", end: "top 20%" },
+  { skillName: "postgresql", start: "top 60%", end: "top 20%" },
+];
 
 export const SkillsSection = (props: { t: any, children: React.ReactNode, cvUrl?: string }) => {
   const { t, children, cvUrl } = props;
   const skillsSetIconContainerRef = useRef<HTMLDivElement>(null);
   const downloadCVButtonRef = useRef<HTMLButtonElement>(null);
-  const lastScrollY = useRef<number>(0);
 
   const handleDownloadCV = () => {
     if (!cvUrl) return;
@@ -27,56 +47,25 @@ export const SkillsSection = (props: { t: any, children: React.ReactNode, cvUrl?
   };
 
   useGSAP(() => {
-    animateSkillsSetIcon("astro", "top 45%", "top 10%")
-    animateSkillsSetIcon("redis", "top 47%", "top 0%")
-    animateSkillsSetIcon("docker", "top 50%", "top 30%")
-    animateSkillsSetIcon("github", "top 40%", "top 20%")
-    animateSkillsSetIcon("arduino", "top 60%", "top 30%")
-    animateSkillsSetIcon("google-cloud", "top 40%", "top 20%")
+    setDownloadCvButton(downloadCVButtonRef.current);
+    iconAnimations.forEach(({ skillName, start, end }) => animateSkillsSetIcon(skillName, start, end));
 
-    // not checked yet
-    animateSkillsSetIcon("rails", "top 40%", "top 10%")
-    animateSkillsSetIcon("js", "top 50%", "top 20%")
-    animateSkillsSetIcon("css", "top 50%", "top 20%")
-    animateSkillsSetIcon("ruby", "top 50%", "top 20%")
-    animateSkillsSetIcon("mjml", "top 50%", "top 20%")
-    animateSkillsSetIcon("elasticsearch", "top 80%", "top 40%")
-    animateSkillsSetIcon("bash", "top 70%", "top 40%")
-    animateSkillsSetIcon("react", "top 50%", "top 20%")
-    animateSkillsSetIcon("mysql", "top 30%", "top 0%")
-    animateSkillsSetIcon("aws", "top 30%", "top 0%")
-    animateSkillsSetIcon("html", "top 30%", "top 0%")
-    animateSkillsSetIcon("capistrano", "top 60%", "top 20%")
-    animateSkillsSetIcon("postgresql", "top 60%", "top 20%")
-  }, { scope: skillsSetIconContainerRef });
-
-  // Handle scroll direction to reset button scale on scroll up
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      // If scrolling up and button is scaled, reset it
-      if (currentScrollY < lastScrollY.current) {
-        const button = downloadCVButtonRef.current;
-
-        if (button) {
-          const currentScale = gsap.getProperty(button, "scale") as number;
-
-          if (currentScale && currentScale > 1) {
-            resetButtonScale();
-          }
+    const resetButtonTrigger = ScrollTrigger.create({
+      trigger: "#skills-section",
+      start: "top bottom",
+      end: "bottom top",
+      onUpdate: (self) => {
+        if (self.direction === -1 && isButtonScaled()) {
+          resetButtonScale();
         }
       }
-
-      lastScrollY.current = currentScrollY;
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    });
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      resetButtonTrigger.kill();
+      setDownloadCvButton(null);
     };
-  }, []);
+  }, { scope: skillsSetIconContainerRef });
 
   return (
     <section id="skills-section">
