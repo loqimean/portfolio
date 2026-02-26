@@ -3,7 +3,7 @@ title: "How Ruby Constant Resolution Works (And Why Compact Modules Can Fail)"
 excerpt: "Ruby namespace syntax can look equivalent, but `module A::B::C` and nested `module A; module B; module C; end; end; end` do not behave the same when parent constants are missing. This is a practical walkthrough of how Ruby resolves constants and why load order matters."
 category: "Ruby on Rails"
 tags: ["Ruby", "RuboCop", "Autoloading", "Zeitwerk", "Debugging"]
-pubDate: 2026-02-25
+pubDate: 2026-02-26
 draft: false
 ---
 ## **One Ruby Example That Explains a Lot**
