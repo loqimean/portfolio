@@ -35,4 +35,5 @@ export const OPENSOURCE_PROJECTS: RepoConfig[] = [
   { owner: 'loqimean',       repo: 'SobriCheck-AI',  displayName: 'SobriCheck AI', registry: null, packageName: 'SobriCheck-AI', type: 'project'  },
   { owner: 'sidekiq',        repo: 'sidekiq',        displayName: 'sidekiq',        registry: 'rubygems', packageName: 'sidekiq',        type: 'contributed to'  },
   { owner: 'faker-ruby',        repo: 'faker',        displayName: 'faker',        registry: 'rubygems', packageName: 'faker',        type: 'contributed to'  },
+  { owner: 'hotwired',        repo: 'turbo',        displayName: 'Hotwired/Turbo',        registry: 'rubygems', packageName: 'turbo',        type: 'contributed to'  },
 ];
