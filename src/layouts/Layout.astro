@@ -6,6 +6,7 @@ import '../styles/global.css';
 import '../styles/animations.css';
 import { DEFAULT_LANGUAGE } from '../i18n/translations';
 import defaultOgImage from '../assets/images/og.png';
+import SpeedInsights from "@vercel/speed-insights/astro"
 
 interface Props {
   title: string;
@@ -40,6 +41,7 @@ const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || 'marynych.ivan@iclo
 <html lang={lang}>
   <head>
     <GoogleAnalytics />
+    <SpeedInsights />
     <meta charset="UTF-8" />
     <meta name="description" content={metaDescription} />
     <meta name="viewport" content="width=device-width" />
