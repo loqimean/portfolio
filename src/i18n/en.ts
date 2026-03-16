@@ -77,6 +77,13 @@ export default {
           I have been managing Ivan for just a few month but can certainly tell that he is very passionate, knowledgable and talented developer. Ivan was a perfect match for our team both from technical side and soft skills. I highly recommend working with Ivan!
         `,
       },
+      {
+        name: "Jasmine Lehnis MBA",
+        description: "Care in Action Director: helping young people succeed",
+        quote: `
+          Ivan is great to work with, as he is reliable and committed to finishing work at a high standard. Ivan is good at problem solving, taking the time needed to research issues and find solutions across multiple platforms. I have no hesitation to work with him again.
+        `,
+      },
     ],
   },
   skills: {

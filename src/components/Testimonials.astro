@@ -2,14 +2,30 @@
 import IrynaYetskaloAvatar from '../assets/images/testimonials/1.png';
 import AnnaGuglielmoAvatar from '../assets/images/testimonials/2.png';
 import KhrystynaRozhniatovskaAvatar from '../assets/images/testimonials/3.png';
+import JasmineLehnisAvatar from '../assets/images/testimonials/4.png';
 import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 
 interface Props {
   t: any;
 }
 
+interface TestimonialItem {
+  name: string;
+  description: string;
+  quote: string;
+}
+
+interface TestimonialCard {
+  item: TestimonialItem;
+  avatar: ImageMetadata;
+}
+
 const { t } = Astro.props;
-const avatars = [IrynaYetskaloAvatar, AnnaGuglielmoAvatar, KhrystynaRozhniatovskaAvatar];
+const avatars: ImageMetadata[] = [IrynaYetskaloAvatar, AnnaGuglielmoAvatar, KhrystynaRozhniatovskaAvatar, JasmineLehnisAvatar];
+
+const allTestimonials: TestimonialCard[] = t.testimonials.items.map((item: TestimonialItem, index: number) => ({ item, avatar: avatars[index] }));
+const sampleTestimonials = allTestimonials.sort(() => Math.random() - 0.5).slice(0, 3);
 ---
 
 <section id="testimonials">
@@ -26,9 +42,9 @@ const avatars = [IrynaYetskaloAvatar, AnnaGuglielmoAvatar, KhrystynaRozhniatovsk
 
   <!-- testimonials cards -->
   <div class="cards-container">
-    {t.testimonials.items.map((item: any, index: number) => (
+    {sampleTestimonials.map(({ item, avatar }: TestimonialCard) => (
     <div class="card">
-      <Picture src={avatars[index]} alt={item.name} width={80} densities={[1, 2]} loading="lazy" pictureAttributes={{ class: 'avatar' }} />
+      <Picture src={avatar} alt={item.name} width={80} densities={[1, 2]} loading="lazy" pictureAttributes={{ class: 'avatar' }} />
 
       <p class="name">{item.name}</p>
       <p class="position">{item.description}</p>
