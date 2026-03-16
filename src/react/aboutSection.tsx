@@ -40,7 +40,7 @@ export const AboutSection = (props: { t: any, children: React.ReactNode }) => {
             <span role="note">{t.aboutText2}</span>
           </h1>
 
-          <div className="mt-20 md:mt-60 pb-10 border-t-2 border-white/10 pt-6">
+          <div className="mt-20 md:mt-20 pb-6 border-t-2 border-white/10 pt-6">
             <p className="text-[10px] md:text-base text-white/70">{t.aboutText3}</p>
           </div>
         </div>
