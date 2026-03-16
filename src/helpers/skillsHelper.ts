@@ -11,27 +11,25 @@ const setDownloadCvButton = (button: HTMLButtonElement | null) => {
 };
 
 const triggerPulseButton = () => {
-  const button = downloadCvButton;
+  const button = document.getElementById("download-cv-button");
 
-  if (!button) return;
+  if (!button) {
+    console.error("Download CV button not found");
+    return;
+  }
 
-  // Keep this as a compositor animation to avoid forced reflow.
-  gsap.fromTo(button, {
-    boxShadow: "0 0 0 0 var(--shadow-pulse-start-color)"
-  }, {
-    boxShadow: "0 0 7px 25px var(--shadow-pulse-end-color)",
-    duration: 0.8,
-    ease: "power1.out",
-    overwrite: "auto"
-  });
+  // Trigger shadow pulse animation
+  button.style.animation = 'none';
+  button.offsetHeight; // force repaint
+  button.style.animation = 'shadow-pulse 0.8s 1';
 
-  buttonScale = Math.min(buttonScale + SCALE_INCREMENT, MAX_BUTTON_SCALE);
+  // Incrementally scale up the button (add to current scale)
+  buttonScale += SCALE_INCREMENT;
 
   gsap.to(button, {
     scale: buttonScale,
     duration: 0.6,
-    ease: "power2.out",
-    overwrite: "auto"
+    ease: "power2.out"
   });
 }
 
