@@ -3,7 +3,6 @@ import { gsap } from 'gsap';
 let buttonScale = 1;
 const SCALE_INCREMENT = 0.05;
 const DEFAULT_BUTTON_SCALE = 1;
-const MAX_BUTTON_SCALE = 1.45;
 let downloadCvButton: HTMLButtonElement | null = null;
 
 const setDownloadCvButton = (button: HTMLButtonElement | null) => {
