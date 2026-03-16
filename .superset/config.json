@@ -1,0 +1,6 @@
+{
+  "setup": [
+    "nvm use\npnpm i\npnpm dev"
+  ],
+  "teardown": []
+}
