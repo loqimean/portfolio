@@ -14,9 +14,9 @@ const { currentLang, hasContactForm = false, contactEmail = '' } = Astro.props;
 const t = getTranslations(currentLang);
 
 const NAV_LINKS = [
-  { label: 'Home',        href: getLocalizedPath(currentLang) },
-  { label: 'Blog',        href: '/blog' },
-  { label: 'OpenSource',  href: '/opensource' },
+  { label: t.nav.home,       href: getLocalizedPath(currentLang) },
+  { label: t.nav.blog,       href: '/blog' },
+  { label: t.nav.openSource, href: '/opensource' },
 ];
 
 ---

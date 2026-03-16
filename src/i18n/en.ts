@@ -21,6 +21,9 @@ export default {
   contactTitle: "Let's work togeeeether",
   blog: {
     title: "Blog",
+    subtitle: "Notes & Writing",
+    articles: "Articles",
+    readSuffix: "read",
     meta: {
       title: "Blog — Web Engineering & Performance",
       description: "Deep dives into Ruby on Rails, web architecture, performance optimization, and product engineering. Personal notes and practical insights by Ivan Marynych.",
@@ -51,7 +54,7 @@ export default {
   copyright: "All rights reserved.",
   downloadCV: "Download CV",
   testimonials: {
-    title: "Testimonials",
+    title: "What Clients Say",
     description: "Client-Centric Approach: I prioritize understanding your unique requirements to deliver tailored solutions that align with your objectives.",
     items: [
       {
@@ -85,6 +88,11 @@ export default {
         `,
       },
     ],
+  },
+  nav: {
+    home: "Home",
+    blog: "Blog",
+    openSource: "Open Source",
   },
   skills: {
     title: "Skills",

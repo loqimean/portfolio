@@ -28,12 +28,12 @@ const posts = raw
     <section class="bl-hero mt-18!">
       <div class="bl-hero-inner">
         <div class="bl-hero-top">
-          <small>Notes & Writing</small>
+          <small>{t.blog.subtitle}</small>
           <span class="bl-badge">2023–{new Date().getFullYear()}</span>
         </div>
         <h1 class="bl-title">{t.blog.title}</h1>
         <div class="bl-hero-foot">
-          <span class="bl-count">{posts.length} Articles</span>
+          <span class="bl-count">{posts.length} {t.blog.articles}</span>
           <div class="bl-cats">
             {[...new Set(posts.map(p => p.category))].map(cat => (
               <span class="bl-cat-pill">{cat}</span>
@@ -63,7 +63,7 @@ const posts = raw
                 <span class="bl-cat">{post.category}</span>
                 <h2 class="bl-post-title">{post.title}</h2>
                 <p class="bl-excerpt">{post.excerpt}</p>
-                <span class="bl-read">{post.readTime} read</span>
+                <span class="bl-read">{post.readTime} {t.blog.readSuffix}</span>
               </div>
 
               <!-- Arrow -->

@@ -1,5 +1,5 @@
 export default {
-  name: "Twoje Imię",
+  name: "Ivan Marynych",
   darkmood: "Ciemny",
   tagline: "Full Stack Developer & Designer",
   about: "O Mnie",
@@ -18,8 +18,12 @@ export default {
   },
   projects: "Projekty",
   contact: "Kontakt",
+  contactTitle: "Zacznijmy współpracę",
   blog: {
     title: "Blog",
+    subtitle: "Notatki i Artykuły",
+    articles: "Artykułów",
+    readSuffix: "czytania",
     meta: {
       title: "Blog — Ruby on Rails, Inżynieria Webowa & Wydajność",
       description: "Głębokie analizy Ruby on Rails, architektury webowej, optymalizacji wydajności i inżynierii produktowej. Osobiste notatki i praktyczne wskazówki od Ivana Marynycha.",
@@ -49,6 +53,11 @@ export default {
   linkedin: "LinkedIn",
   copyright: "Wszelkie prawa zastrzeżone.",
   downloadCV: "Pobierz CV",
+  nav: {
+    home: "Strona główna",
+    blog: "Blog",
+    openSource: "Open Source",
+  },
   skills: {
     title: "Umiejętności",
   },
@@ -59,6 +68,7 @@ export default {
       { name: "Iryna Yetskalo", description: "Founder & CEO @ HubOsvit", quote: "I was working with Ivan when he just started to develop on Ruby on Rails. That's an amazing to see how quickly he grew up from the beginner to the strong programmer. I appreciate his work and I hope to work with him again. Thank you, Ivan 🤝" },
       { name: "Anna Guglielmo", description: "COO, Operational Manager for Digital Companies", quote: "Ivan is a very good Ruby developer, he has helped me with my project. He is a very kind and polite person, always available to find the right solutions, very recommended!" },
       { name: "Khrystyna Rozhniatovska", description: "Head of IT Delivery at Crunch", quote: "I have been managing Ivan for just a few month but can certainly tell that he is very passionate, knowledgable and talented developer. Ivan was a perfect match for our team both from technical side and soft skills. I highly recommend working with Ivan!" },
+      { name: "Jasmine Lehnis MBA", description: "Care in Action Director: helping young people succeed", quote: "Ivan is great to work with, as he is reliable and committed to finishing work at a high standard. Ivan is good at problem solving, taking the time needed to research issues and find solutions across multiple platforms. I have no hesitation to work with him again." },
     ],
   },
   index: {

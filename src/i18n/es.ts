@@ -18,8 +18,12 @@ export default {
   },
   projects: "Proyectos",
   contact: "Contacto",
+  contactTitle: "Trabajemos juntos",
   blog: {
     title: "Blog",
+    subtitle: "Notas y Escritos",
+    articles: "Artículos",
+    readSuffix: "lectura",
     meta: {
       title: "Blog — Ruby on Rails, Ingeniería Web & Rendimiento",
       description: "Notas y escritos personales de Ivan Marynych sobre Ruby on Rails, ingeniería web y optimización de rendimiento.",
@@ -49,6 +53,11 @@ export default {
   linkedin: "LinkedIn",
   copyright: "Todos los derechos reservados.",
   downloadCV: "Descargar CV",
+  nav: {
+    home: "Inicio",
+    blog: "Blog",
+    openSource: "Código Abierto",
+  },
   skills: {
     title: "Habilidades",
   },
@@ -59,6 +68,7 @@ export default {
       { name: "Iryna Yetskalo", description: "Founder & CEO @ HubOsvit", quote: "I was working with Ivan when he just started to develop on Ruby on Rails. That's an amazing to see how quickly he grew up from the beginner to the strong programmer. I appreciate his work and I hope to work with him again. Thank you, Ivan 🤝" },
       { name: "Anna Guglielmo", description: "COO, Operational Manager for Digital Companies", quote: "Ivan is a very good Ruby developer, he has helped me with my project. He is a very kind and polite person, always available to find the right solutions, very recommended!" },
       { name: "Khrystyna Rozhniatovska", description: "Head of IT Delivery at Crunch", quote: "I have been managing Ivan for just a few month but can certainly tell that he is very passionate, knowledgable and talented developer. Ivan was a perfect match for our team both from technical side and soft skills. I highly recommend working with Ivan!" },
+      { name: "Jasmine Lehnis MBA", description: "Care in Action Director: helping young people succeed", quote: "Ivan is great to work with, as he is reliable and committed to finishing work at a high standard. Ivan is good at problem solving, taking the time needed to research issues and find solutions across multiple platforms. I have no hesitation to work with him again." },
     ],
   },
   index: {
