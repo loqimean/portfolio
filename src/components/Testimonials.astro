@@ -25,7 +25,6 @@ const { t } = Astro.props;
 const avatars: ImageMetadata[] = [IrynaYetskaloAvatar, AnnaGuglielmoAvatar, KhrystynaRozhniatovskaAvatar, JasmineLehnisAvatar];
 
 const allTestimonials: TestimonialCard[] = t.testimonials.items.map((item: TestimonialItem, index: number) => ({ item, avatar: avatars[index] }));
-const sampleTestimonials = allTestimonials.sort(() => Math.random() - 0.5).slice(0, 3);
 ---
 
 <section id="testimonials">
@@ -42,8 +41,8 @@ const sampleTestimonials = allTestimonials.sort(() => Math.random() - 0.5).slice
 
   <!-- testimonials cards -->
   <div class="cards-container">
-    {sampleTestimonials.map(({ item, avatar }: TestimonialCard) => (
-    <div class="card">
+    {allTestimonials.map(({ item, avatar }: TestimonialCard) => (
+    <div class="card" data-testimonial-card>
       <Picture src={avatar} alt={item.name} width={80} densities={[1, 2]} loading="lazy" pictureAttributes={{ class: 'avatar' }} />
 
       <p class="name">{item.name}</p>
@@ -56,3 +55,25 @@ const sampleTestimonials = allTestimonials.sort(() => Math.random() - 0.5).slice
     ))}
   </div>
 </section>
+
+<script>
+  // shuffle testimonials cards to show maximum 3 cards at a time
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('#testimonials [data-testimonial-card]'));
+  const visibleCardsCount = 3;
+
+  if (cards.length > visibleCardsCount) {
+    const shuffledCards = [...cards];
+
+    for (let i = shuffledCards.length - 1; i > 0; i--) {
+      const randomIndex = Math.floor(Math.random() * (i + 1));
+
+      [shuffledCards[i], shuffledCards[randomIndex]] = [shuffledCards[randomIndex], shuffledCards[i]];
+    }
+
+    const selectedCards = new Set(shuffledCards.slice(0, visibleCardsCount));
+
+    cards.forEach((card) => {
+      card.hidden = !selectedCards.has(card);
+    });
+  }
+</script>
