@@ -15,8 +15,8 @@ export const AboutSection = (props: { t: any, children: React.ReactNode }) => {
     gsap.timeline({
       scrollTrigger: {
         trigger: aboutSectionRef.current,
-        start: 'top 80%',
-        end: 'top 15%',
+        start: 'top 65%',
+        end: 'top 10%',
         scrub: true
       }
     }).set(splitText.chars, {
