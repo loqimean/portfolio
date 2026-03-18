@@ -18,7 +18,7 @@
 @plugin "@iconify/tailwind4";
 
 @theme {
-  --font-sans: 'Lato', 'sans-serif';
+  --font-sans: 'Lato', 'Inter', 'sans-serif';
   --default-font-family: 'Lato', 'Inter', 'sans-serif';
   --color-neutral-black: #161616;
   --breakpoint-ultrawide: 1814px;
