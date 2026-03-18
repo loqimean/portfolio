@@ -15,9 +15,9 @@ export default function Index(props: { t: any }) {
           <Model t={t} />
 
           {/* light sources */}
-          <directionalLight position={[-7.8, 0, -2]} castShadow intensity={Math.PI * 2} />
-          <spotLight position={[-5.7, -0.8, 6.21]} angle={0.3} penumbra={1} intensity={1000} castShadow visible={true} />
-          <pointLight position={[5, 0, 3.76]} intensity={400} castShadow />
+          <directionalLight position={[-7.8, 0, -2]} intensity={Math.PI * 2} />
+          <spotLight position={[-5.7, -0.8, 6.21]} angle={0.3} penumbra={1} intensity={1000} visible={true} />
+          <pointLight position={[5, 0, 3.76]} intensity={400} />
 
           {/* Controls for debugging */}
           {/* <OrbitControls />
