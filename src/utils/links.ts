@@ -13,3 +13,10 @@ export function safeHref(
   const normalize = (p: string) => p.replace(/\/$/, '') || '/';
   return normalize(href) === normalize(currentPath) ? fallback : href;
 }
+
+/**
+ * Normalizes a path by removing trailing slashes.
+ * @param path - The path to normalize.
+ * @returns The normalized path.
+ */
+export const normalizePath = (path: string) => path.replace(/\/$/, '') || '/';

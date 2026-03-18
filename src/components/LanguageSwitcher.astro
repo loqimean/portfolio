@@ -1,7 +1,11 @@
 ---
 import { getLocalizedPath } from '../i18n/translations';
-import { safeHref } from '../utils/links';
 
+interface Props {
+  currentLang: string;
+}
+
+const { currentLang } = Astro.props;
 const LOCALES = [
   { code: 'en', label: 'EN', ariaLabel: 'Switch to English' },
   { code: 'uk', label: 'UK', ariaLabel: 'Перемкнути на Українську' },
@@ -9,17 +13,47 @@ const LOCALES = [
   { code: 'es', label: 'ES', ariaLabel: 'Cambiar a Español' },
 ] as const;
 
-const activeClass = 'px-4 py-2 rounded-md text-sm font-medium bg-(--accent-color) text-white';
-const inactiveClass = 'px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 no-underline text-(--text-color) hover:bg-(--bg-color)';
+const currentLocale = LOCALES.find(({ code }) => code === currentLang) ?? LOCALES[0];
 ---
 
-<div class="flex hidden gap-2 bg-(--card-bg) rounded-lg p-1">
-  {LOCALES.map(({ code, label, ariaLabel }) => {
-    const href = safeHref(getLocalizedPath(code), Astro.url.pathname);
-    return href ? (
-      <a href={href} class={inactiveClass} aria-label={ariaLabel}>{label}</a>
-    ) : (
-      <span class={activeClass} aria-current="page">{label}</span>
-    );
-  })}
-</div>
+<details class="lang-dropdown" data-lang-dropdown>
+  <summary class="lang-dropdown-trigger" aria-label="Change language">
+    <i class="icon-[mdi--earth] lang-dropdown-icon" aria-hidden="true"></i>
+    <span>{currentLocale.label}</span>
+    <i class="icon-[mdi--chevron-down] lang-dropdown-chevron" aria-hidden="true"></i>
+  </summary>
+
+  <ul class="lang-dropdown-menu" role="listbox" aria-label="Language options">
+    {LOCALES.map(({ code, label, ariaLabel }) => {
+      const href = code === currentLang ? null : getLocalizedPath(code);
+      return (
+        <li>
+          {href ? (
+            <a href={href} class="lang-dropdown-item" aria-label={ariaLabel}>{label}</a>
+          ) : (
+            <span class="lang-dropdown-item lang-dropdown-item-active" aria-current="page">{label}</span>
+          )}
+        </li>
+      );
+    })}
+  </ul>
+</details>
+
+<script>
+  const languageDropdowns = document.querySelectorAll('[data-lang-dropdown]');
+
+  languageDropdowns.forEach((dropdown) => {
+    document.addEventListener('click', (event) => {
+      if (!(event.target instanceof Node)) return;
+      if (!dropdown.contains(event.target)) {
+        dropdown.removeAttribute('open');
+      }
+    });
+
+    dropdown.addEventListener('keydown', (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        dropdown.removeAttribute('open');
+      }
+    });
+  });
+</script>
