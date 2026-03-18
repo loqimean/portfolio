@@ -19,7 +19,7 @@
 
 @theme {
   --font-sans: 'Lato', 'sans-serif';
-  --default-font-family: 'Lato', 'sans-serif';
+  --default-font-family: 'Lato', 'Inter', 'sans-serif';
   --color-neutral-black: #161616;
   --breakpoint-ultrawide: 1814px;
 }
