@@ -31,7 +31,8 @@ const {
   pubDate,
   tags,
 } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const rawCanonicalURL = new URL(Astro.url.pathname, Astro.site)
+const canonicalURL = rawCanonicalURL.href.replace(/\/$/, '');
 const ogImageURL = ogImage ? new URL(ogImage, Astro.site).href : defaultOgImage.src;
 const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT || '';
 const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || 'marynych.ivan@icloud.com';
@@ -47,12 +48,12 @@ const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || 'marynych.ivan@iclo
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="canonical" href={canonicalURL.href} />
+    <link rel="canonical" href={canonicalURL} />
     <title>{title}</title>
 
     <!-- Open Graph -->
     <meta property="og:type"        content={ogType} />
-    <meta property="og:url"         content={canonicalURL.href} />
+    <meta property="og:url"         content={canonicalURL} />
     <meta property="og:title"       content={title} />
     <meta property="og:description" content={metaDescription} />
     <meta property="og:site_name"   content="Ivan Marynych" />
