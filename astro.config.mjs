@@ -28,7 +28,7 @@ for (const file of readdirSync(blogDir)) {
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://ivanmarynych.com',
+  site: 'https://www.ivanmarynych.dev',
   redirects: {
     '/en/': '/',
   },
