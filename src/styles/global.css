@@ -74,12 +74,12 @@
   }
 
   section#about-me {
-    @apply bg-accent dark:bg-neutral-black pt-10 md:pt-36 dark:border-b-2 dark:border-accent mx-5 rounded-b-2xl;
+    @apply bg-accent dark:bg-neutral-black pt-10 md:pt-36 dark:border-b-2 dark:border-accent mx-2 rounded-b-2xl;
   }
 
   header {
     .container {
-      max-width: calc(100vw - 80px);
+      max-width: calc(100vw - 60px);
 
       -webkit-backdrop-filter: blur(24px);
       backdrop-filter: blur(24px);
@@ -135,7 +135,7 @@
   }
 
   section#contact-section {
-    @apply py-16 bg-accent mx-5 rounded-2xl;
+    @apply py-16 bg-accent mx-2 rounded-2xl;
 
     .container {
       @apply flex flex-col lg:flex-row justify-between mx-auto px-6 py-12 pt-3 pb-0 md:pb-12 xl:pt-32 gap-20;
@@ -234,6 +234,22 @@
 
   .lang-dropdown-item-active {
     @apply bg-black/10 text-neutral-black;
+  }
+
+  .lang-inline {
+    @apply flex items-center gap-2;
+  }
+
+  .lang-inline-icon {
+    @apply size-4 text-neutral-black shrink-0;
+  }
+
+  .lang-inline-item {
+    @apply text-xs font-semibold uppercase no-underline text-neutral-black transition-opacity duration-200 hover:opacity-70;
+  }
+
+  .lang-inline-item-active {
+    @apply underline underline-offset-2 cursor-default;
   }
 }
 

@@ -10,7 +10,7 @@ export function HeroSectionShell(props: HeroSectionShellProps) {
   const { t, containerClassName = '', children } = props;
 
   return (
-    <section className="flex flex-col bg-accent mx-5 rounded-t-3xl dark:bg-neutral-black h-[95vh]">
+    <section className="flex flex-col bg-accent mx-2 rounded-t-3xl dark:bg-neutral-black h-[95vh]">
       <div className={`relative mx-auto h-full container ${containerClassName}`.trim()}>
         {children}
 
