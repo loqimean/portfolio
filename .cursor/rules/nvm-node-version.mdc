@@ -1,0 +1,22 @@
+---
+description: Enforce correct Node.js version via nvm before running any node/npm/pnpm commands
+alwaysApply: true
+---
+
+# Node Version Management
+
+This project uses nvm. The required Node.js version is defined in `.nvmrc` (currently `v24.14.0`).
+
+Before running any `node`, `npm`, `pnpm`, or `npx` commands, always activate the correct version:
+
+```bash
+nvm use
+```
+
+This reads `.nvmrc` and switches to the declared version automatically.
+
+If the version is not installed yet:
+
+```bash
+nvm install
+```
