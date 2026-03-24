@@ -6,9 +6,9 @@ tags: ["Ruby on Rails", "Testing", "Error Handling", "500 Errors"]
 pubDate: 2026-03-24
 draft: false
 ---
-# How a Controller Spec Missed a 500 Error That a Request Spec Caught
+## Introduction
 
-A subtle but painful bug: a route gets removed (or commented out), a URL helper in the sitemap view breaks, the app starts returning 500 in production — and the test suite stays green. Here is how that happens and how to prevent it.
+Production is returning 500 on the sitemap. The test suite is green. The bug has been there for days. This is the story of why controller specs give false confidence, and how one request spec would have caught it immediately.
 
 ## The Setup
 
@@ -37,13 +37,6 @@ The existing spec lived in `spec/controllers/` and looked like this:
 
 ```ruby
 RSpec.describe SitemapController do
-  before do
-    create(:page)
-    create(:post)
-    create(:provider)
-    create(:event)
-  end
-
   describe "GET #index" do
     context "with :xml format" do
       it "returns http success" do
@@ -53,7 +46,7 @@ RSpec.describe SitemapController do
         expect(response.headers["Content-Type"]).to eq("application/xml; charset=utf-8")
       end
 
-      it "does not render any template" do
+      it "does not render the application layout" do
         expect(get(:index, format: :xml)).not_to render_template(layout: "application")
       end
     end
@@ -63,11 +56,11 @@ end
 
 Both examples passed. The reason: **Rails controller specs do not go through the full routing stack.**
 
-When you call `get :index` in a controller spec, RSpec dispatches the action directly, bypassing the router entirely. The controller action itself is thin — it just sets headers and lets the builder render. The view rendering **does** happen, but here is the key: in the test environment the builder tries to call `support_url` and it fails — yet the spec still passes.
+When you call `get :index` in a controller spec, RSpec dispatches the action directly to the controller, bypassing the router and Rack middleware entirely. The controller action itself is thin — it sets response headers and delegates rendering to the builder template. The view does render, and `support_url` does raise a `NoMethodError` — but the spec still passes.
 
-Why? Because `support_url` is resolved at the moment the view renders. If the test environment has the route commented out, calling `support_url` raises `NoMethodError`. But controller specs run in a context that may stub or swallow view errors differently from a real HTTP request, depending on how the builder template is invoked. More practically: the old spec only asserted on the HTTP status and the content-type header, both of which are set *before* the view renders. The actual rendering exception was not propagating back to the spec assertion.
+Here is why: the HTTP status code and `Content-Type` header are written to the response object *before* rendering begins. By the time the builder blows up, those values are already committed. The spec only asserted on those two things. The rendering exception was raised, but nothing in the spec was checking for it, so RSpec reported green.
 
-The bottom line is that controller specs test the controller layer in isolation. They are not designed to exercise the full request-response cycle, including URL generation inside views.
+Controller specs test the controller layer in isolation. They are not designed to exercise the full request-response cycle, and they give you no guarantee that views render cleanly.
 
 ## How a Request Spec Catches It
 
@@ -75,13 +68,6 @@ A request spec sends a real HTTP request through the full Rails stack — router
 
 ```ruby
 RSpec.describe "Sitemap" do
-  before do
-    create(:page)
-    create(:post)
-    create(:provider)
-    create(:event)
-  end
-
   describe "GET /sitemap" do
     it "returns http success with XML content type and renders without errors" do
       get sitemap_path(locale: I18n.default_locale, format: :xml)
@@ -105,7 +91,16 @@ RSpec.describe "Sitemap" do
 end
 ```
 
-With this spec, `support_url` is called during an actual request cycle. The `NoMethodError` propagates naturally and the test fails with a clear error — the same error that was causing the 500 in production.
+With this spec, `support_url` is called during an actual request cycle. The `NoMethodError` propagates naturally through the full Rack stack and the test fails immediately with a clear error — the same error that was causing the 500 in production:
+
+```
+NoMethodError:
+  undefined method `support_url' for an instance of SitemapController
+
+# ./app/views/sitemap/index.builder:12:in `block in _app_views_sitemap_index_builder'
+```
+
+No ambiguity. No green test hiding a broken endpoint. The failure message points directly at the view line that calls the missing helper.
 
 The `"does not include the removed support URL"` example adds an extra safety net: even if the helper somehow resolves to an empty string instead of raising, the spec will catch the presence of the path in the output and fail.
 
@@ -116,7 +111,7 @@ The `"does not include the removed support URL"` example adds an extra safety ne
 | Goes through the router | No | Yes |
 | Exercises view rendering fully | Partially | Yes |
 | Catches broken URL helpers in views | Not reliably | Yes |
-| Tests real HTTP status codes | No (mocked) | Yes |
+| Status codes reflect middleware behavior | No | Yes |
 | Rails recommendation | Deprecated | Preferred |
 
 Rails itself has been moving away from controller specs for years. The [Rails testing guide](https://guides.rubyonrails.org/testing.html) recommends request specs (or integration tests) over controller specs precisely because they exercise the full stack.
