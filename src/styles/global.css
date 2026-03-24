@@ -655,6 +655,33 @@
   .bps-article strong { @apply font-black text-[#111] dark:text-white; }
   .bps-article em     { @apply italic; }
   .bps-article hr     { @apply border-0 border-t border-[#e8e8e8] dark:border-t-[#2a2a2a] my-12; }
+
+  /* Tables */
+  .bps-article table {
+    @apply w-full text-sm my-8 border-collapse;
+  }
+  .bps-article thead tr {
+    @apply border-b-2 border-accent;
+  }
+  .bps-article th {
+    @apply text-left text-[0.72rem] font-black uppercase tracking-[0.12em]
+           text-[#111] dark:text-white px-4 py-3;
+  }
+  .bps-article td {
+    @apply px-4 py-3 text-[#2a2a2a] dark:text-[#aaa] leading-[1.65]
+           border-b border-[#ebebeb] dark:border-[#222];
+  }
+  .bps-article tbody tr:last-child td {
+    @apply border-b-0;
+  }
+  .bps-article tbody tr:hover td {
+    @apply bg-[#fafafa] dark:bg-[#111];
+  }
+  @media (max-width: 640px) {
+    .bps-article table { @apply text-[0.8rem]; }
+    .bps-article th,
+    .bps-article td   { @apply px-2.5 py-2.5; }
+  }
 }
 
 /* ── Blog post components ────────────────────────────────────────────────── */
