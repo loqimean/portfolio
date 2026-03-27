@@ -1,5 +1,5 @@
 ---
-title: "Production-only Rails crash: sentry-rails version mismatch after upgrade"
+title: "Rails moved on; Sentry-Rails didn't: debugging a ghost 500 error in production"
 excerpt: "Production threw a cryptic error. Logs were quiet. I blamed custom error pages and routing first. The real bug was an old gem that no longer matched the framework."
 category: "Ruby on Rails"
 tags: ["Ruby on Rails", "Sentry", "Debugging", "Production", "Upgrades"]
