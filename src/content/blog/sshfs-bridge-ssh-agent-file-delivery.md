@@ -1,47 +1,30 @@
 ---
 title: "MEDIA: pointed at the wrong disk: bridging an SSH-backed AI agent to its own chat gateway"
-excerpt: "My AI agent runs its terminal tools over SSH on a separate box. Every file it generated for me came back empty in chat, because the chat gateway was looking for it on a different machine. Here is the SSHFS bridge that made file delivery just work again."
+excerpt: "My Hermes AI agent runs its terminal tools over SSH on a separate box. Every file it generated for me came back empty in chat, because the chat gateway was looking for it on a different machine. Here is the SSHFS bridge that made file delivery just work again."
 category: "AI & Automation"
-tags: ["AI Agents", "SSH", "SSHFS", "Linux", "DevOps", "Automation"]
+tags: ["AI Agents", "Hermes", "SSH", "SSHFS", "Linux", "DevOps", "Automation"]
 pubDate: 2026-09-19
 draft: false
 ---
 ## Situation
 
-I run an AI agent (Hermes) that talks to me over Telegram and does real work through terminal and file tools: writes files, runs commands, generates reports and screenshots. To keep that execution off the small box that hosts the chat gateway itself, the agent's `terminal.backend` is configured as `ssh`, pointing at a separate, beefier machine — my Mac mini.
+I run [Hermes](https://github.com/NousResearch/hermes-agent), an open-source AI agent, as my day-to-day assistant over Telegram. It does real work through terminal and file tools: writes files, runs commands, generates reports and screenshots. To keep that execution off the small box that hosts the chat gateway itself, Hermes's `terminal.backend` is configured as `ssh`, pointing at a separate, beefier machine — my Mac mini.
 
 Everything worked, until I asked for a file back. The agent wrote a Markdown report, told me it was sending it, and Telegram showed... nothing. Empty message, no attachment, no error I could act on.
 
 ## Task
 
-I needed the agent to reliably hand me files it generates — reports, screenshots, whatever — as native chat attachments, not as a link I have to click through every time. And I wanted it to keep working without me babysitting it every session.
+I needed the agent to reliably hand me files it generates — reports, screenshots, whatever — as native chat attachments, not as a link I have to click through every time. And I wanted it to keep working without me babysitting it every session, as a real AI agent integration enhancement rather than a one-off patch.
 
 ## Action
 
 ### Finding the actual gap
 
-The agent's chat-attachment mechanism (`MEDIA:/path/to/file`) only resolves files sitting on the **gateway host's own disk** — the machine running the Telegram-facing process. Nothing on the SSH execution target is visible to it, because from the gateway's point of view, it's a completely different filesystem on a completely different machine.
+Hermes's chat-attachment mechanism (`MEDIA:/path/to/file`) only resolves files sitting on the **gateway host's own disk** — the machine running the Telegram-facing process. Nothing on the SSH execution target is visible to it, because from the gateway's point of view, it's a completely different filesystem on a completely different machine.
 
 So the file existed. It was real. It just existed in the wrong place.
 
-```mermaid
-flowchart LR
-    subgraph target["Execution target (SSH backend)"]
-        A[Agent writes file] --> B[/shared folder/]
-    end
-
-    subgraph gateway["Gateway host (Telegram process)"]
-        C[Local disk]
-        D[Chat attachment mechanism]
-    end
-
-    B -.->|"not visible — different machine"| C
-    C --> D
-    D --> E([Telegram: empty message])
-
-    style target fill:#1e293b,color:#fff
-    style gateway fill:#0f172a,color:#fff
-```
+![Before: the SSH execution target and the gateway host can't see each other's files](/images/blog/sshfs-bridge-before.svg)
 
 ### The workarounds I ruled out
 
@@ -55,34 +38,15 @@ flowchart LR
 
 The agent's SSH backend already has a trusted, working connection to the execution target — that's how it runs commands there in the first place. I used that same trust in reverse: **mount a folder from the execution target onto the gateway host via SSHFS.**
 
-Once mounted, any file the agent writes into that shared folder on the execution target shows up **instantly** as an ordinary local file on the gateway host. No upload, no token, no TTL. The chat-attachment mechanism just sees a local path, because as far as its process is concerned, that's exactly what it is.
+Once mounted, any file the agent writes into that shared folder on the execution target shows up **instantly** as an ordinary local file on the gateway host. No upload, no token, no TTL. Hermes's chat-attachment mechanism just sees a local path, because as far as its process is concerned, that's exactly what it is.
 
-```mermaid
-flowchart LR
-    subgraph target["Execution target (SSH backend)"]
-        A[Agent writes file] --> B[/shared folder/]
-    end
-
-    subgraph gateway["Gateway host (Telegram process)"]
-        C["SSHFS mount point"]
-        D[Chat attachment mechanism]
-        E[Telegram API]
-    end
-
-    B -- "SSHFS mount" --> C
-    C --> D
-    D --> E
-    E --> F([User gets a real attachment])
-
-    style target fill:#1e293b,color:#fff
-    style gateway fill:#0f172a,color:#fff
-```
+![After: SSHFS bridges the two hosts, and MEDIA: resolves a real local path](/images/blog/sshfs-bridge-after.svg)
 
 ### Setting it up
 
 A few things bit me on the way to a working mount, worth knowing before you try this yourself:
 
-**Reuse the trust that already exists.** I almost generated a brand-new SSH keypair for the gateway-to-target direction before checking whether one already worked. It did — the same key the agent's SSH backend uses to run commands on the target. Reusing it meant one less credential to manage and rotate.
+**Reuse the trust that already exists.** I almost generated a brand-new SSH keypair for the gateway-to-target direction before checking whether one already worked. It did — the same key Hermes's SSH backend uses to run commands on the target. Reusing it meant one less credential to manage and rotate.
 
 **Check who's actually allowed to log in.** The target's `sshd_config` had `PermitRootLogin yes`, but also `AllowUsers <specific-user>`. Connecting as root failed with a generic `Permission denied (publickey)` that looked like a key problem. It wasn't — it was a username allowlist silently rejecting a user that was never going to be let in regardless of the key.
 
@@ -112,8 +76,8 @@ WantedBy=multi-user.target
 
 ## Result
 
-Files the agent generates on the execution target now land as real Telegram attachments the moment they're written — no relay, no manual link, no per-file ceremony. I write a file into the shared folder on one machine, and it just appears, correctly, on the other.
+Files Hermes generates on the execution target now land as real Telegram attachments the moment they're written — no relay, no manual link, no per-file ceremony. I write a file into the shared folder on one machine, and it just appears, correctly, on the other.
 
 The relay I built first didn't go to waste — it's still there as a documented fallback for any execution target that doesn't have this bridge set up, or for the (hopefully rare) day the mount itself goes down. But it's no longer in the critical path, and that's the part I actually wanted: one less thing to think about every time the agent needs to hand me something.
 
-If you're running an AI agent (or any automation) with its execution split across two machines, this pattern generalizes past chat bots — anywhere one process needs to treat another machine's files as if they were local, SSHFS plus a systemd unit is a lot less code than it sounds like, and a lot more reliable than remembering to upload something every time.
+If you're running Hermes, or any AI agent, with its execution split across two machines, this pattern generalizes past chat bots — anywhere one process needs to treat another machine's files as if they were local, SSHFS plus a systemd unit is a lot less code than it sounds like, and a lot more reliable than remembering to upload something every time. It's a small change, but it's the kind of AI agent integration enhancement that turns "the agent can technically do this" into "the agent actually does this, every time, without me thinking about it."
