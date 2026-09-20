@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import BlogReadingProgress from '../../components/blog/BlogReadingProgress.astro';
 import BlogPostHero from '../../components/blog/BlogPostHero.astro';
@@ -10,16 +10,16 @@ import { readingTime } from '../../utils/readingTime';
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map(entry => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props:  { entry },
   }));
 }
 
 const { entry } = Astro.props;
-const { Content, headings } = await entry.render();
+const { Content, headings } = await render(entry);
 
 const { title, excerpt, category, tags, pubDate } = entry.data;
-const readTime = readingTime(entry.body);
+const readTime = readingTime(entry.body ?? '');
 
 const month = pubDate.toLocaleString('en-US', { month: 'short' }).toUpperCase();
 const day   = String(pubDate.getDate()).padStart(2, '0');
@@ -29,7 +29,7 @@ const toc = headings.filter(h => h.depth === 2);
 
 const allPosts = await getCollection('blog');
 const related  = allPosts
-  .filter(p => p.slug !== entry.slug)
+  .filter(p => p.id !== entry.id)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 ---

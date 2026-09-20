@@ -14,7 +14,7 @@ const posts = raw
     category: entry.data.category,
     tags:     entry.data.tags,
     readTime: readingTime(entry.body),
-    slug:     `/blog/${entry.slug}`,
+    slug:     `/blog/${entry.id}`,
     month: entry.data.pubDate.toLocaleString('en-US', { month: 'short' }).toUpperCase(),
     day:   String(entry.data.pubDate.getDate()).padStart(2, '0'),
     year:  String(entry.data.pubDate.getFullYear()),
