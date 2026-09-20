@@ -23,7 +23,7 @@ const { related } = Astro.props;
           const rd = String(r.data.pubDate.getDate()).padStart(2, '0');
           const ry = String(r.data.pubDate.getFullYear());
           return (
-            <a href={`/blog/${r.slug}`} class="bps-more-card">
+            <a href={`/blog/${r.id}`} class="bps-more-card">
               <span class="bps-more-cat">{r.data.category}</span>
               <h3 class="bps-more-title">{r.data.title}</h3>
               <div class="bps-more-foot">
