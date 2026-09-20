@@ -1,0 +1,83 @@
+---
+title: "MEDIA: pointed at the wrong disk: bridging an SSH-backed AI agent to its own chat gateway"
+excerpt: "My Hermes AI agent runs its terminal tools over SSH on a separate box. Every file it generated for me came back empty in chat, because the chat gateway was looking for it on a different machine. Here is the SSHFS bridge that made file delivery just work again."
+category: "AI & Automation"
+tags: ["AI Agents", "Hermes", "SSH", "SSHFS", "Linux", "DevOps", "Automation"]
+pubDate: 2026-09-19
+draft: false
+---
+## Situation
+
+I run [Hermes](https://github.com/NousResearch/hermes-agent), an open-source AI agent, as my day-to-day assistant over Telegram. It does real work through terminal and file tools: writes files, runs commands, generates reports and screenshots. To keep that execution off the small box that hosts the chat gateway itself, Hermes's `terminal.backend` is configured as `ssh`, pointing at a separate, beefier machine (my Mac mini).
+
+Everything worked, until I asked for a file back. The agent wrote a Markdown report, told me it was sending it, and Telegram showed nothing. Empty message, no attachment, no error I could act on.
+
+## Task
+
+I wanted the agent to hand me files it generates, reports, screenshots, whatever, as native chat attachments instead of a link I click through every time. And I wanted the fix to keep working without me babysitting it every session.
+
+## Action
+
+### Finding the actual gap
+
+Hermes's chat-attachment mechanism (`MEDIA:/path/to/file`) only resolves files sitting on the gateway host's own disk, the machine running the Telegram-facing process. Nothing on the SSH execution target is visible to it. From the gateway's point of view, it's a different filesystem on a different machine entirely.
+
+The file was real. It just existed in the wrong place.
+
+![Before: the SSH execution target and the gateway host can't see each other's files](/images/blog/sshfs-bridge-before.svg)
+
+### The workarounds I ruled out
+
+Fetching the file from the gateway host doesn't work when the execution target sits behind a home router with no public route back. The gateway simply can't reach in.
+
+Public temp-file hosting is mechanically fine, but every file briefly sits on a third party's server with no auth. I didn't want that as my default path for arbitrary generated content.
+
+I actually built a self-hosted upload relay first: a small Sinatra service, bearer-token auth, single-use download link, 15-minute TTL. It worked, and it still sits in my infrastructure as a fallback. But every delivery needed an explicit upload call, a URL round trip, and the agent manually pasting a link into chat. That's ceremony I didn't want per file.
+
+### The fix: mount the execution target into the gateway host
+
+The agent's SSH backend already has a trusted, working connection to the execution target. That's how it runs commands there in the first place. I used that same trust in reverse and mounted a folder from the execution target onto the gateway host with SSHFS.
+
+Once mounted, any file the agent writes into that shared folder on the execution target shows up instantly as an ordinary local file on the gateway host. No upload, no token, no TTL. Hermes's chat-attachment mechanism just sees a local path, because as far as its process is concerned, that's exactly what it is.
+
+![After: SSHFS bridges the two hosts, and MEDIA: resolves a real local path](/images/blog/sshfs-bridge-after.svg)
+
+### Setting it up
+
+A few things bit me on the way to a working mount.
+
+I almost generated a brand-new SSH keypair for the gateway-to-target direction before checking whether one already worked. One did: the same key Hermes's SSH backend uses to run commands on the target. Reusing it meant one less credential to manage and rotate.
+
+The target's `sshd_config` had `PermitRootLogin yes`, but also `AllowUsers <specific-user>`. Connecting as root failed with a generic `Permission denied (publickey)` that looked like a key problem. It wasn't. It was a username allowlist rejecting a user that was never going to get in regardless of the key.
+
+A raw `sshfs` invocation dies the moment the SSH connection blips, and it doesn't come back after a reboot. It needs to run as a systemd service instead:
+
+```ini
+[Unit]
+Description=SSHFS mount of execution-target shared folder
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStartPre=-/bin/fusermount -u /mnt/target-shared
+ExecStart=/usr/bin/sshfs -f -o IdentityFile=/root/.ssh/id_ed25519,StrictHostKeyChecking=accept-new,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3,allow_other <user>@<target-host>:/home/<user>/agent-shared /mnt/target-shared
+ExecStop=/bin/fusermount -u /mnt/target-shared
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+```
+
+`Restart=always` plus `reconnect` in the `sshfs` options means a dropped connection comes back on its own. `WantedBy=multi-user.target` means it survives a reboot without me touching it.
+
+I killed the `sshfs` process directly mid-session to confirm systemd would respawn it and the mount would reappear. It did, in about ten seconds. That's the difference between working once when you set it up and still working at 3am when the network hiccups.
+
+## Result
+
+Files Hermes generates on the execution target now land as real Telegram attachments the moment they're written. No relay, no manual link, no per-file ceremony. I write a file into the shared folder on one machine, and it appears, correctly, on the other.
+
+The relay I built first didn't go to waste. It's still there as a documented fallback for any execution target that doesn't have this bridge set up, or for the day the mount itself goes down. But it's out of the critical path now, which was the actual goal: one less thing to think about every time the agent needs to hand me something.
+
+If you're running Hermes, or any AI agent, with its execution split across two machines, this pattern isn't specific to chat bots. Anywhere one process needs to treat another machine's files as local, SSHFS plus a systemd unit is less code than it sounds like, and more reliable than remembering to upload something every time.
