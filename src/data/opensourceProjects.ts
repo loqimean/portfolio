@@ -38,4 +38,5 @@ export const OPENSOURCE_PROJECTS: RepoConfig[] = [
   { owner: 'hotwired',       repo: 'turbo',        displayName: 'Hotwired/Turbo',        registry: 'rubygems', packageName: 'turbo', type: 'contributed to' },
   { owner: 'pay-rails',      repo: 'pay',        displayName: 'pay-rails',        registry: 'rubygems', packageName: 'pay', type: 'contributed to' },
   { owner: 'norman',         repo: 'babosa',        displayName: 'babosa',        registry: 'rubygems', packageName: 'babosa', type: 'contributed to' },
+  { owner: 'NousResearch',   repo: 'hermes-agent',  displayName: 'Hermes Agent',  registry: null, type: 'contributed to' },
 ];
