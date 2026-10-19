@@ -39,4 +39,5 @@ export const OPENSOURCE_PROJECTS: RepoConfig[] = [
   { owner: 'pay-rails',      repo: 'pay',        displayName: 'pay-rails',        registry: 'rubygems', packageName: 'pay', type: 'contributed to' },
   { owner: 'norman',         repo: 'babosa',        displayName: 'babosa',        registry: 'rubygems', packageName: 'babosa', type: 'contributed to' },
   { owner: 'NousResearch',   repo: 'hermes-agent',  displayName: 'Hermes Agent',  registry: null, type: 'contributed to' },
+  { owner: 'moonlight-lupin', repo: 'agent-skills',   displayName: 'Hermes Agent Skills', registry: null, type: 'contributed to' },
 ];
