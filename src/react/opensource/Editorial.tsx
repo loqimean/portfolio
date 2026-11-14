@@ -19,7 +19,7 @@ export function Editorial({ projects, loading, configs }: EditorialProps) {
             <div key={i} className="os-s2-item">
               <div className="os-s2-link" style={{ pointerEvents: 'none' }}>
                 <div>
-                  {cfg.type !== 'contributed to' && cfg.type !== 'project' && (
+                  {cfg.type !== 'contributed to' && cfg.type !== 'project' && cfg.type !== 'product' && (
                     <>
                       <Bone cls="h-3 w-16 mb-2 rounded" />
                       <Bone cls="h-12 w-full rounded" />
@@ -38,7 +38,7 @@ export function Editorial({ projects, loading, configs }: EditorialProps) {
             </div>
           ))
         : projects.map(p => {
-            const showStat    = p.type !== 'contributed to' && p.type !== 'project';
+            const showStat    = p.type !== 'contributed to' && p.type !== 'project' && p.type !== 'product';
             const metric      = p.stat ?? { count: p.stars, label: '★ Stars' };
             const isDownloads = !!p.stat;
 
