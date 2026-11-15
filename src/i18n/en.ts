@@ -53,6 +53,11 @@ export default {
   linkedin: "LinkedIn",
   copyright: "All rights reserved.",
   downloadCV: "Download CV",
+  products: {
+    title: "Products",
+    description: "Apps I design, build and sell myself, from the first line of code to the checkout.",
+    visit: "Visit",
+  },
   testimonials: {
     title: "What Clients Say",
     description: "Client-Centric Approach: I prioritize understanding your unique requirements to deliver tailored solutions that align with your objectives.",

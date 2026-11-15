@@ -134,6 +134,51 @@
     }
   }
 
+  section#products {
+    @apply container mx-auto py-20 px-5 flex flex-col gap-10 md:gap-16;
+
+    .products-list {
+      @apply flex flex-col gap-8 max-w-5xl w-full mx-auto;
+    }
+
+    .product-card {
+      @apply grid md:grid-cols-2 items-center gap-6 md:gap-10 p-3 md:p-4 rounded-3xl
+             bg-(--card-bg) text-inherit no-underline! transition-transform duration-300;
+
+      &:hover { @apply -translate-y-1; }
+      &:hover .product-link { @apply gap-3; }
+    }
+
+    .product-image img {
+      @apply w-full h-auto rounded-2xl;
+    }
+
+    .product-body {
+      @apply flex flex-col gap-3 px-2 pb-4 md:p-0 md:pr-6;
+    }
+
+    .product-platforms {
+      @apply flex gap-2;
+    }
+
+    .product-chip {
+      @apply text-xs uppercase tracking-widest font-semibold px-2.5 py-1 rounded-full
+             border border-neutral-300 dark:border-neutral-700 text-neutral-500;
+    }
+
+    .product-name {
+      @apply m-0 text-3xl sm:text-4xl font-extrabold;
+    }
+
+    .product-tagline {
+      @apply m-0 text-lg leading-8 text-neutral-500;
+    }
+
+    .product-link {
+      @apply inline-flex items-center gap-2 mt-2 font-semibold text-accent transition-all;
+    }
+  }
+
   section#contact-section {
     @apply py-16 bg-accent mx-2 rounded-2xl;
 
@@ -360,10 +405,6 @@
   .os-s2-type-badge--project {
     @apply text-[#111] dark:text-white border-[#ccc] dark:border-[#3a3a3a]
            bg-[#f5f5f5] dark:bg-[#1e1e1e];
-  }
-
-  .os-s2-type-badge--product {
-    @apply text-white border-accent bg-accent;
   }
 
   .os-s2-type-badge--contributed-to {

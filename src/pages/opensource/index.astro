@@ -5,10 +5,7 @@ import { getTranslations, DEFAULT_LANGUAGE } from '../../i18n/translations';
 import OpenSourcePage from '../../react/OpenSourcePage';
 
 const t = getTranslations(DEFAULT_LANGUAGE);
-// Unreleased entries stay off the live site; PUBLIC_SHOW_HIDDEN=1 previews them
-const showHidden = import.meta.env.PUBLIC_SHOW_HIDDEN === '1';
-const projects = OPENSOURCE_PROJECTS.filter(p => showHidden || !p.hidden);
-const count = projects.length;
+const count = OPENSOURCE_PROJECTS.length;
 ---
 
 <Layout
@@ -35,7 +32,7 @@ const count = projects.length;
     <!-- ── Dynamic content (React island) ───────────────── -->
     <section class="os-content">
       <div class="os-content-inner">
-        <OpenSourcePage projects={projects} client:load />
+        <OpenSourcePage projects={OPENSOURCE_PROJECTS} client:load />
       </div>
     </section>
   </main>

@@ -1,0 +1,48 @@
+---
+import { Picture } from 'astro:assets';
+import { visibleProducts } from '../data/products';
+
+interface Props {
+  t: any;
+}
+
+const { t } = Astro.props;
+const segment = Astro.url.pathname.split('/')[1];
+const lang = ['uk', 'pl', 'es'].includes(segment) ? segment : 'en';
+const products = visibleProducts();
+---
+
+{products.length > 0 && (
+  <section id="products">
+    <div class="flex flex-col gap-10">
+      <div class="bg-neutral-black rounded-2xl w-fit h-fit py-2 mx-auto px-3">
+        <span class="icon-[mdi--rocket-launch-outline] size-8 bg-white"></span>
+      </div>
+
+      <div class="flex flex-col gap-3 text-center">
+        <h3 class="m-0! text-4xl sm:text-5xl font-extrabold">{t.products.title}</h3>
+        <p class="text-lg text-neutral-500 leading-8 max-w-3xl mx-auto">{t.products.description}</p>
+      </div>
+    </div>
+
+    <div class="products-list">
+      {products.map((p) => (
+        <a class="product-card" href={p.url} target="_blank" rel="noopener" title={p.name}>
+          <Picture src={p.image} alt={p.name} widths={[600, 1200]} sizes="(min-width: 768px) 50vw, 100vw" loading="lazy" pictureAttributes={{ class: 'product-image' }} />
+
+          <div class="product-body">
+            <div class="product-platforms">
+              {p.platforms.map((platform) => <span class="product-chip">{platform}</span>)}
+            </div>
+            <p class="product-name">{p.name}</p>
+            <p class="product-tagline">{p.tagline[lang] ?? p.tagline.en}</p>
+            <span class="product-link">
+              {t.products.visit} {new URL(p.url).host}
+              <span class="icon-[humbleicons--arrow-right] size-5"></span>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+)}

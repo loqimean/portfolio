@@ -8,6 +8,7 @@ import { HeroSectionMobile } from '../react/heroSectionMobile';
 import { AboutSection } from '../react/aboutSection';
 import { ContactForm } from '../react/ContactForm';
 import Testimonials from '../components/Testimonials.astro';
+import Products from '../components/Products.astro';
 
 interface Props {
   t: any;
@@ -40,6 +41,9 @@ const { t, hasContactForm = false, contactEmail = '', formspreeEndpoint = '', re
   <SkillsSection t={t} cvUrl={cvUrl} client:visible>
     <SkillsSetIcon class="mx-auto w-full h-fit" />
   </SkillsSection>
+
+  <!-- Products Section (renders nothing while every product is hidden) -->
+  <Products t={t} />
 
   <!-- Testimonials Section -->
   <Testimonials t={t} />

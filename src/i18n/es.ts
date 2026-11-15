@@ -61,6 +61,11 @@ export default {
   skills: {
     title: "Habilidades",
   },
+  products: {
+    title: "Productos",
+    description: "Apps que diseño, desarrollo y vendo yo mismo, desde la primera línea de código hasta el pago.",
+    visit: "Visitar",
+  },
   testimonials: {
     title: "Testimonios",
     description: "Enfoque centrado en el cliente: Priorizo entender tus requisitos únicos para ofrecer soluciones adaptadas a tus objetivos.",

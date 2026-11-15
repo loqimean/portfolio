@@ -61,6 +61,11 @@ export default {
   skills: {
     title: "Umiejętności",
   },
+  products: {
+    title: "Produkty",
+    description: "Aplikacje, które sam projektuję, tworzę i sprzedaję: od pierwszej linijki kodu po płatność.",
+    visit: "Odwiedź",
+  },
   testimonials: {
     title: "Opinie",
     description: "Podejście zorientowane na klienta: Priorytetem jest dla mnie zrozumienie Twoich unikalnych wymagań, aby dostarczyć rozwiązania dostosowane do Twoich celów.",
