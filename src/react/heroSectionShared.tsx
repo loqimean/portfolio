@@ -3,11 +3,13 @@ import type { ReactNode } from 'react';
 interface HeroSectionShellProps {
   t: any;
   containerClassName?: string;
+  /** Released product to feature as "Recent project"; GitHub profile otherwise. */
+  recentProjectUrl?: string;
   children: ReactNode;
 }
 
 export function HeroSectionShell(props: HeroSectionShellProps) {
-  const { t, containerClassName = '', children } = props;
+  const { t, containerClassName = '', recentProjectUrl, children } = props;
 
   return (
     <section className="flex flex-col bg-accent mx-2 rounded-t-3xl dark:bg-neutral-black h-[95vh]">
@@ -30,7 +32,7 @@ export function HeroSectionShell(props: HeroSectionShellProps) {
         </div>
 
         <div className="z-10 absolute bottom-10 right-5">
-          <a href="https://github.com/loqimean" title="Recent Project" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline">
+          <a href={recentProjectUrl ?? "https://github.com/loqimean"} title="Recent Project" target="_blank" rel="noopener noreferrer" className="no-underline hover:underline">
             <span className="uppercase text-sm md:text-xl">{t.recentProject}</span>
           </a>
           <span className="text-xl mx-2">-</span>

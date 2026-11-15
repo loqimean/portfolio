@@ -1,0 +1,24 @@
+---
+import { Picture } from 'astro:assets';
+import { promotedProduct, productLink } from '../data/products';
+
+interface Props {
+  /** Where the banner sits; becomes utm_content. */
+  placement: string;
+}
+
+const { placement } = Astro.props;
+const p = promotedProduct();
+---
+
+{p && (
+  <a class="promo" href={productLink(p, placement)} target="_blank" rel="noopener" title={p.name}>
+    <Picture src={p.image} alt={p.name} widths={[320, 640]} sizes="(min-width: 640px) 220px, 100vw" loading="lazy" pictureAttributes={{ class: 'promo-image' }} />
+    <span class="promo-body">
+      <span class="promo-label">My app</span>
+      <span class="promo-name">{p.name}</span>
+      <span class="promo-pitch">{p.pitch}</span>
+    </span>
+    <span class="promo-cta">{new URL(p.url).host} <span aria-hidden="true">→</span></span>
+  </a>
+)}

@@ -8,6 +8,8 @@ export interface Product {
    * island props on every page, so a hidden product's text would leak into HTML.
    */
   tagline: Record<string, string>;
+  /** One short English line for banners (blog, hero). */
+  pitch: string;
   name: string;
   url: string;
   image: ImageMetadata;
@@ -24,7 +26,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 'snowed',
     name: 'Snowed',
-    url: 'https://snowed.app/?utm_source=portfolio&utm_medium=referral&utm_campaign=snowed&utm_content=products_card',
+    url: 'https://snowed.app/',
+    pitch: "Soft snow that piles up on your Mac's windows and the Dock.",
     image: SnowedImage,
     platforms: ['macOS'],
     tagline: {
@@ -41,4 +44,18 @@ export function visibleProducts(): Product[] {
   const showHidden = import.meta.env.PUBLIC_SHOW_HIDDEN === '1';
 
   return PRODUCTS.filter(p => showHidden || !p.hidden);
+}
+
+/** Outbound link tagged for analytics; `placement` becomes utm_content. */
+export function productLink(p: Product, placement: string): string {
+  const utm = new URLSearchParams({
+    utm_source: 'portfolio', utm_medium: 'referral', utm_campaign: p.id, utm_content: placement,
+  });
+
+  return `${p.url}?${utm}`;
+}
+
+/** Product advertised in banners, if any is released. */
+export function promotedProduct(): Product | undefined {
+  return visibleProducts()[0];
 }

@@ -9,6 +9,7 @@ import { AboutSection } from '../react/aboutSection';
 import { ContactForm } from '../react/ContactForm';
 import Testimonials from '../components/Testimonials.astro';
 import Products from '../components/Products.astro';
+import { promotedProduct, productLink } from '../data/products';
 
 interface Props {
   t: any;
@@ -20,16 +21,18 @@ interface Props {
 }
 
 const { t, hasContactForm = false, contactEmail = '', formspreeEndpoint = '', recaptchaSiteKey, cvUrl } = Astro.props;
+const promo = promotedProduct();
+const recentProjectUrl = promo ? productLink(promo, 'hero_recent_project') : undefined;
 ---
 
 <main class="pt-16 overflow-hidden">
 <!-- <main class="pt-20"> -->
   <!-- Hero Section -->
   <div class="hero-mobile-only">
-    <HeroSectionMobile t={t} client:media="(max-width: 767px)" />
+    <HeroSectionMobile t={t} recentProjectUrl={recentProjectUrl} client:media="(max-width: 767px)" />
   </div>
   <div class="hero-desktop-only">
-    <HeroSectionDesktop t={t} client:media="(min-width: 768px)" />
+    <HeroSectionDesktop t={t} recentProjectUrl={recentProjectUrl} client:media="(min-width: 768px)" />
   </div>
 
   <!-- About Section -->

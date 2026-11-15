@@ -6,6 +6,7 @@ import BlogPostHero from '../../components/blog/BlogPostHero.astro';
 import BlogPostToc from '../../components/blog/BlogPostToc.astro';
 import BlogPostRelated from '../../components/blog/BlogPostRelated.astro';
 import { readingTime } from '../../utils/readingTime';
+import ProductPromo from '../../components/ProductPromo.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -63,6 +64,8 @@ const related  = allPosts
               <span class="blog-footer-tag">{t}</span>
             ))}
           </footer>
+
+          <ProductPromo placement="blog_post" />
         </article>
 
       </div>

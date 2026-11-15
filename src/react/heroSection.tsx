@@ -37,11 +37,11 @@ function SceneLoader() {
   );
 }
 
-export const HeroSectionDesktop = (props: { t: any }) => {
-  const { t } = props
+export const HeroSectionDesktop = (props: { t: any, recentProjectUrl?: string }) => {
+  const { t, recentProjectUrl } = props
 
   return (
-    <HeroSectionShell t={t}>
+    <HeroSectionShell t={t} recentProjectUrl={recentProjectUrl}>
       <Suspense fallback={<SceneLoader />}>
         <Scene t={t} />
       </Suspense>

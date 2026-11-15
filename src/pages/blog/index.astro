@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { DEFAULT_LANGUAGE, getTranslations } from '../../i18n/translations';
 import { readingTime } from '../../utils/readingTime';
+import ProductPromo from '../../components/ProductPromo.astro';
 
 const t = getTranslations(DEFAULT_LANGUAGE);
 const raw = await getCollection('blog', ({ data }) => !data.draft);
@@ -46,6 +47,7 @@ const posts = raw
     <!-- ── Posts list ────────────────────────────────────── -->
     <section class="bl-list-section">
       <div class="bl-list-inner">
+        <ProductPromo placement="blog_index" />
 
         {posts.map((post, _index) => (
           <article class="bl-item">

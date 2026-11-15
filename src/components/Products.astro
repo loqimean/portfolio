@@ -1,6 +1,6 @@
 ---
 import { Picture } from 'astro:assets';
-import { visibleProducts } from '../data/products';
+import { visibleProducts, productLink } from '../data/products';
 
 interface Props {
   t: any;
@@ -27,7 +27,7 @@ const products = visibleProducts();
 
     <div class="products-list">
       {products.map((p) => (
-        <a class="product-card" href={p.url} target="_blank" rel="noopener" title={p.name}>
+        <a class="product-card" href={productLink(p, 'products_card')} target="_blank" rel="noopener" title={p.name}>
           <Picture src={p.image} alt={p.name} widths={[600, 1200]} sizes="(min-width: 768px) 50vw, 100vw" loading="lazy" pictureAttributes={{ class: 'product-image' }} />
 
           <div class="product-body">

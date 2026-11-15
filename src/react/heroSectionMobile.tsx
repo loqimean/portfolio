@@ -1,10 +1,10 @@
 import { HeroSectionShell } from './heroSectionShared';
 
-export const HeroSectionMobile = (props: { t: any }) => {
-  const { t } = props
+export const HeroSectionMobile = (props: { t: any, recentProjectUrl?: string }) => {
+  const { t, recentProjectUrl } = props
 
   return (
-    <HeroSectionShell t={t} containerClassName="flex items-center">
+    <HeroSectionShell t={t} recentProjectUrl={recentProjectUrl} containerClassName="flex items-center">
       <h2 className="text-gray-200 text-[20vw] font-bold mt-0 uppercase absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">Welcome</h2>
       <img src="/stone.webp" alt="" className="w-full sm:max-h-[700px] max-h-[500px] h-full object-cover m-0!" fetchPriority="high" />
     </HeroSectionShell>
