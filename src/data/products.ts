@@ -24,7 +24,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'snowed',
     name: 'Snowed',
-    url: 'https://snowed.app/',
+    url: 'https://snowed.app/?utm_source=portfolio&utm_medium=referral&utm_campaign=snowed&utm_content=products_card',
     image: SnowedImage,
     platforms: ['macOS'],
     tagline: {
