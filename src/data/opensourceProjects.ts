@@ -40,4 +40,5 @@ export const OPENSOURCE_PROJECTS: RepoConfig[] = [
   { owner: 'norman',         repo: 'babosa',        displayName: 'babosa',        registry: 'rubygems', packageName: 'babosa', type: 'contributed to' },
   { owner: 'NousResearch',   repo: 'hermes-agent',  displayName: 'Hermes Agent',  registry: null, type: 'contributed to' },
   { owner: 'moonlight-lupin', repo: 'agent-skills',   displayName: 'Hermes Agent Skills', registry: null, type: 'contributed to' },
+  { owner: 'igorkasyanchuk', repo: 'talk_to_your_app', displayName: 'talk_to_your_app', registry: 'rubygems', packageName: 'talk_to_your_app', type: 'contributed to' },
 ];
